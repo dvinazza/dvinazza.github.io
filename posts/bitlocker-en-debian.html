@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html prefix="
+og: http://ogp.me/ns#
+article: http://ogp.me/ns/article#
+" lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bitlocker en Debian | DocumentarI/O</title>
+<link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/rst.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/code.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/colorbox.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/theme.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/ipython.min.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/nikola_ipython.css" rel="stylesheet" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../rss.xml">
+<link rel="canonical" href="http://dvinazza.github.io/posts/bitlocker-en-debian.html">
+<!--[if lt IE 9]><script src="../assets/js/html5.js"></script><![endif]--><meta name="author" content="David Vinazza">
+<meta property="og:site_name" content="DocumentarI/O">
+<meta property="og:title" content="Bitlocker en Debian">
+<meta property="og:url" content="http://dvinazza.github.io/posts/bitlocker-en-debian.html">
+<meta property="og:description" content="Instalación de requisitos
+apt-get install libfuse-dev libpolarssl-dev
+cd /tmp
+wget https://github.com/Aorimn/dislocker/archive/master.zip
+unzip master.zip
+cd dislocker-master
+make
+sudo make install
+Mo">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2015-07-13T22:51:03-03:00">
+<meta property="article:tag" content="debian linux bitlocker">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Ir al contenido principal</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-inverse navbar-static-top"><div class="container">
+<!-- This keeps the margins nice -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+            <span class="sr-only">Mostrar navegación</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://dvinazza.github.io/">
+
+                <span id="blog-title">DocumentarI/O</span>
+            </a>
+        </div>
+<!-- /.navbar-header -->
+        <div class="collapse navbar-collapse" id="bs-navbar" aria-expanded="false">
+            <ul class="nav navbar-nav">
+<li>
+<a href="../archive.html">Archivo</a>
+                </li>
+<li>
+<a href="../categories/index.html">Tags</a>
+                </li>
+<li>
+<a href="../rss.xml">feed RSS</a>
+            </li>
+<li class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown">Otros Sitios<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+<li>
+<a href="https://github.com/dvinazza/">github</a>
+                    </li>
+<li>
+<a href="http://about.me/david.vinazza">about.me</a>
+                    </li>
+<li>
+<a href="http://ar.linkedin.com/in/davidvinazza/">linked.in</a>
+            </li>
+</ul>
+</li>
+</ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+    <a href="bitlocker-en-debian.rst" id="sourcelink">Código fuente</a>
+    </li>
+                
+            </ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        <div class="row">
+            
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="#" class="u-url">Bitlocker en Debian</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                    David Vinazza
+            </span></p>
+            <p class="dateline"><a href="#" rel="bookmark"><time class="published dt-published" datetime="2015-07-13T22:51:03-03:00" itemprop="datePublished" title="2015-07-13 22:51">2015-07-13 22:51</time></a></p>
+                <p class="commentline">        </p>
+<div class="g-commentcount" data-href="/posts/bitlocker-en-debian.html"></div>
+<script src="https://apis.google.com/js/plusone.js"></script><p class="sourceline"><a href="bitlocker-en-debian.rst" id="sourcelink">Código fuente</a></p>
+
+        </div>
+        
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p>Instalación de requisitos</p>
+<pre class="code bash"><a name="rest_code_9b2eb698dfee40dda92d5f02d5102870-1"></a>apt-get install libfuse-dev libpolarssl-dev
+<a name="rest_code_9b2eb698dfee40dda92d5f02d5102870-2"></a><span class="nb">cd</span> /tmp
+<a name="rest_code_9b2eb698dfee40dda92d5f02d5102870-3"></a>wget https://github.com/Aorimn/dislocker/archive/master.zip
+<a name="rest_code_9b2eb698dfee40dda92d5f02d5102870-4"></a>unzip master.zip
+<a name="rest_code_9b2eb698dfee40dda92d5f02d5102870-5"></a><span class="nb">cd</span> dislocker-master
+<a name="rest_code_9b2eb698dfee40dda92d5f02d5102870-6"></a>make
+<a name="rest_code_9b2eb698dfee40dda92d5f02d5102870-7"></a>sudo make install
+</pre>
+<p>Montaje de la unidad encriptada, primero como archivo intermedio.</p>
+<pre class="code bash"><a name="rest_code_6df43e41c5254ae79cf966b489a57b2a-1"></a>mkdir /tmp/dislocker <span class="c1">#creo una carpeta para el montaje intermedio</span>
+<a name="rest_code_6df43e41c5254ae79cf966b489a57b2a-2"></a>sudo dislocker -r -V <span class="o">[</span>particion<span class="o">]</span> -p<span class="o">[</span>clave<span class="o">]</span> /tmp/dislocker
+</pre>
+<p>Luego como montaje tradicional.</p>
+<pre class="code bash"><a name="rest_code_f4048ac2e2014f80a8347100ec32b1a7-1"></a>sudo mount -r -o loop /tmp/dislocker/dislocker-file <span class="o">[</span>carpeta donde montar<span class="o">]</span>
+</pre>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../categories/debian-linux-bitlocker.html" rel="tag">debian linux bitlocker</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="limesurvey-etiquetas-de-paises.html" rel="prev" title="Limesurvey: Etiquetas de Paises">Publicación anterior</a>
+            </li>
+            <li class="next">
+                <a href="migrador-de-dbs-postgresql.html" rel="next" title="Migrador de DBs (PostgreSQL)">Siguiente publicación</a>
+            </li>
+        </ul></nav></aside><section class="comments"><h2>Comentarios</h2>
+                <script src="https://apis.google.com/js/plusone.js"></script><div class="g-comments" data-href="http://dvinazza.github.io/posts/bitlocker-en-debian.html" data-first_party_property="BLOGGER" data-view_type="FILTERED_POSTMOD">
+</div>
+
+
+        </section></article>
+</div>
+        <!--End of body content-->
+
+        <footer id="footer">
+            Contents © 2017         <a href="mailto:davidvinazza@gmail.com">David Vinazza</a> - Powered by         <a href="http://getnikola.com" rel="nofollow">Nikola</a>         
+            
+        </footer>
+</div>
+</div>
+
+            <script src="../assets/js/jquery.min.js"></script><script src="../assets/js/bootstrap.min.js"></script><script src="../assets/js/moment-with-locales.min.js"></script><script src="../assets/js/fancydates.js"></script><script src="../assets/js/mathjax.js"></script><script src="../assets/js/jquery.colorbox-min.js"></script><script src="../assets/js/colorbox-i18n/jquery.colorbox-es.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
+    moment.locale("es");
+    fancydates(0, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates -->
+</body>
+</html>

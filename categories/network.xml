@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>DocumentarI/O (Publicaciones sobre network)</title><link>http://dvinazza.github.io</link><description></description><atom:link href="http://dvinazza.github.io/categories/network.xml" rel="self" type="application/rss+xml"></atom:link><language>es</language><lastBuildDate>Tue, 23 May 2017 02:31:54 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Instalando Nagios Core</title><link>http://dvinazza.github.io/posts/instalando-nagios-core.html</link><dc:creator>David Vinazza</dc:creator><description>&lt;div&gt;&lt;p&gt;Hace tiempo vengo postergando pasar del Nagios disponible en los repositorios de debian/ubuntu a la versión más reciente de Nagios. Por suerte, cuando por fin me decidí encontré mucha documentación al respecto. No inventé nada, lo único que hice fue recopilar información de varios sitios y darle un diseño más simpático, para que sirva de documentación.&lt;/p&gt;
+&lt;p&gt;requerimientos: apache y php activado&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_82aef65bf861459e9a0cc912f827e57d-1"&gt;&lt;/a&gt;apt-get install build-essential
+&lt;a name="rest_code_82aef65bf861459e9a0cc912f827e57d-2"&gt;&lt;/a&gt;
+&lt;a name="rest_code_82aef65bf861459e9a0cc912f827e57d-3"&gt;&lt;/a&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; /tmp
+&lt;a name="rest_code_82aef65bf861459e9a0cc912f827e57d-4"&gt;&lt;/a&gt;wget http://prdownloads.sourceforge.net/sourceforge/nagios/nagios-4.0.7.tar.gz
+&lt;a name="rest_code_82aef65bf861459e9a0cc912f827e57d-5"&gt;&lt;/a&gt;tar xvfz nagios-4.0.7.tar.gz
+&lt;a name="rest_code_82aef65bf861459e9a0cc912f827e57d-6"&gt;&lt;/a&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; nagios-4.0.7
+&lt;/pre&gt;&lt;p&gt;Creamos los usuarios y grupones necesarios&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_a572cfbe8e694a138538a9e11a6c339b-1"&gt;&lt;/a&gt;useradd nagios
+&lt;a name="rest_code_a572cfbe8e694a138538a9e11a6c339b-2"&gt;&lt;/a&gt;groupadd nagcmd
+&lt;a name="rest_code_a572cfbe8e694a138538a9e11a6c339b-3"&gt;&lt;/a&gt;/usr/sbin/usermod -a -G nagios nagios
+&lt;a name="rest_code_a572cfbe8e694a138538a9e11a6c339b-4"&gt;&lt;/a&gt;/usr/sbin/usermod -a -G nagcmd www-data
+&lt;a name="rest_code_a572cfbe8e694a138538a9e11a6c339b-5"&gt;&lt;/a&gt;/usr/sbin/usermod -a -G nagcmd nagios
+&lt;/pre&gt;&lt;p&gt;Procedemos con la instalación&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_482d3dad3a764792b539865d5fa3a64a-1"&gt;&lt;/a&gt;./configure --with-nagios-group&lt;span class="o"&gt;=&lt;/span&gt;nagios --with-command-group&lt;span class="o"&gt;=&lt;/span&gt;nagcmd --with-mail&lt;span class="o"&gt;=&lt;/span&gt;/usr/bin/sendmail --with-httpd_conf&lt;span class="o"&gt;=&lt;/span&gt;/etc/apache2/conf-available
+&lt;a name="rest_code_482d3dad3a764792b539865d5fa3a64a-2"&gt;&lt;/a&gt;make all
+&lt;a name="rest_code_482d3dad3a764792b539865d5fa3a64a-3"&gt;&lt;/a&gt;make install
+&lt;a name="rest_code_482d3dad3a764792b539865d5fa3a64a-4"&gt;&lt;/a&gt;make install-init
+&lt;a name="rest_code_482d3dad3a764792b539865d5fa3a64a-5"&gt;&lt;/a&gt;make install-config
+&lt;a name="rest_code_482d3dad3a764792b539865d5fa3a64a-6"&gt;&lt;/a&gt;make install-commandmode
+&lt;a name="rest_code_482d3dad3a764792b539865d5fa3a64a-7"&gt;&lt;/a&gt;make install-webconf
+&lt;/pre&gt;&lt;p&gt;Activamos la configuración de apache y reiniciamos los servicios&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_0f387ca4a416447b8b15fbeb8157258a-1"&gt;&lt;/a&gt;a2enconf nagios.conf
+&lt;a name="rest_code_0f387ca4a416447b8b15fbeb8157258a-2"&gt;&lt;/a&gt;service apache2 restart
+&lt;a name="rest_code_0f387ca4a416447b8b15fbeb8157258a-3"&gt;&lt;/a&gt;service nagios restart
+&lt;/pre&gt;&lt;p&gt;Y los plugins? Lo mismo. Descarga e instalación.&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_ed7a3496071a47c5a915a78ef153638e-1"&gt;&lt;/a&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; /tmp
+&lt;a name="rest_code_ed7a3496071a47c5a915a78ef153638e-2"&gt;&lt;/a&gt;wget http://nagios-plugins.org/download/nagios-plugins-2.0.3.tar.gz
+&lt;a name="rest_code_ed7a3496071a47c5a915a78ef153638e-3"&gt;&lt;/a&gt;tar xvfz nagios-plugins-2.0.3.tar.gz
+&lt;a name="rest_code_ed7a3496071a47c5a915a78ef153638e-4"&gt;&lt;/a&gt;
+&lt;a name="rest_code_ed7a3496071a47c5a915a78ef153638e-5"&gt;&lt;/a&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; nagios-plugins-2.0.3
+&lt;a name="rest_code_ed7a3496071a47c5a915a78ef153638e-6"&gt;&lt;/a&gt;./configure --with-nagios-user&lt;span class="o"&gt;=&lt;/span&gt;nagios --with-nagios-group&lt;span class="o"&gt;=&lt;/span&gt;nagios
+&lt;a name="rest_code_ed7a3496071a47c5a915a78ef153638e-7"&gt;&lt;/a&gt;make
+&lt;a name="rest_code_ed7a3496071a47c5a915a78ef153638e-8"&gt;&lt;/a&gt;make install
+&lt;a name="rest_code_ed7a3496071a47c5a915a78ef153638e-9"&gt;&lt;/a&gt;
+&lt;a name="rest_code_ed7a3496071a47c5a915a78ef153638e-10"&gt;&lt;/a&gt;service nagios restart &lt;span class="c1"&gt;#reiniciamos el servicio&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</description><category>linux</category><category>monitoring</category><category>nagios</category><category>network</category><guid>http://dvinazza.github.io/posts/instalando-nagios-core.html</guid><pubDate>Mon, 30 Jun 2014 14:06:50 GMT</pubDate></item></channel></rss>

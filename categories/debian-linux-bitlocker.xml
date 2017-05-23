@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>DocumentarI/O (Publicaciones sobre debian linux bitlocker)</title><link>http://dvinazza.github.io</link><description></description><atom:link href="http://dvinazza.github.io/categories/debian-linux-bitlocker.xml" rel="self" type="application/rss+xml"></atom:link><language>es</language><lastBuildDate>Tue, 23 May 2017 02:31:54 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Bitlocker en Debian</title><link>http://dvinazza.github.io/posts/bitlocker-en-debian.html</link><dc:creator>David Vinazza</dc:creator><description>&lt;div&gt;&lt;p&gt;Instalación de requisitos&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_9b2eb698dfee40dda92d5f02d5102870-1"&gt;&lt;/a&gt;apt-get install libfuse-dev libpolarssl-dev
+&lt;a name="rest_code_9b2eb698dfee40dda92d5f02d5102870-2"&gt;&lt;/a&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; /tmp
+&lt;a name="rest_code_9b2eb698dfee40dda92d5f02d5102870-3"&gt;&lt;/a&gt;wget https://github.com/Aorimn/dislocker/archive/master.zip
+&lt;a name="rest_code_9b2eb698dfee40dda92d5f02d5102870-4"&gt;&lt;/a&gt;unzip master.zip
+&lt;a name="rest_code_9b2eb698dfee40dda92d5f02d5102870-5"&gt;&lt;/a&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; dislocker-master
+&lt;a name="rest_code_9b2eb698dfee40dda92d5f02d5102870-6"&gt;&lt;/a&gt;make
+&lt;a name="rest_code_9b2eb698dfee40dda92d5f02d5102870-7"&gt;&lt;/a&gt;sudo make install
+&lt;/pre&gt;&lt;p&gt;Montaje de la unidad encriptada, primero como archivo intermedio.&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_6df43e41c5254ae79cf966b489a57b2a-1"&gt;&lt;/a&gt;mkdir /tmp/dislocker &lt;span class="c1"&gt;#creo una carpeta para el montaje intermedio&lt;/span&gt;
+&lt;a name="rest_code_6df43e41c5254ae79cf966b489a57b2a-2"&gt;&lt;/a&gt;sudo dislocker -r -V &lt;span class="o"&gt;[&lt;/span&gt;particion&lt;span class="o"&gt;]&lt;/span&gt; -p&lt;span class="o"&gt;[&lt;/span&gt;clave&lt;span class="o"&gt;]&lt;/span&gt; /tmp/dislocker
+&lt;/pre&gt;&lt;p&gt;Luego como montaje tradicional.&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_f4048ac2e2014f80a8347100ec32b1a7-1"&gt;&lt;/a&gt;sudo mount -r -o loop /tmp/dislocker/dislocker-file &lt;span class="o"&gt;[&lt;/span&gt;carpeta donde montar&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</description><category>debian linux bitlocker</category><guid>http://dvinazza.github.io/posts/bitlocker-en-debian.html</guid><pubDate>Tue, 14 Jul 2015 01:51:03 GMT</pubDate></item></channel></rss>

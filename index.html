@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html prefix="
+og: http://ogp.me/ns#
+article: http://ogp.me/ns/article#
+" lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Documentario de David Vinazza en Github">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DocumentarI/O | DocumentarI/O</title>
+<link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="assets/css/rst.css" rel="stylesheet" type="text/css">
+<link href="assets/css/code.css" rel="stylesheet" type="text/css">
+<link href="assets/css/colorbox.css" rel="stylesheet" type="text/css">
+<link href="assets/css/theme.css" rel="stylesheet" type="text/css">
+<link href="assets/css/ipython.min.css" rel="stylesheet" type="text/css">
+<link href="assets/css/nikola_ipython.css" rel="stylesheet" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<link rel="canonical" href="http://dvinazza.github.io/index.html">
+<link rel="next" href="index-1.html" type="text/html">
+<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]-->
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Ir al contenido principal</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-inverse navbar-static-top"><div class="container">
+<!-- This keeps the margins nice -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+            <span class="sr-only">Mostrar navegación</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://dvinazza.github.io/">
+
+                <span id="blog-title">DocumentarI/O</span>
+            </a>
+        </div>
+<!-- /.navbar-header -->
+        <div class="collapse navbar-collapse" id="bs-navbar" aria-expanded="false">
+            <ul class="nav navbar-nav">
+<li>
+<a href="archive.html">Archivo</a>
+                </li>
+<li>
+<a href="categories/index.html">Tags</a>
+                </li>
+<li>
+<a href="rss.xml">feed RSS</a>
+            </li>
+<li class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown">Otros Sitios<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+<li>
+<a href="https://github.com/dvinazza/">github</a>
+                    </li>
+<li>
+<a href="http://about.me/david.vinazza">about.me</a>
+                    </li>
+<li>
+<a href="http://ar.linkedin.com/in/davidvinazza/">linked.in</a>
+            </li>
+</ul>
+</li>
+</ul>
+<ul class="nav navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        <div class="row">
+            
+<div class="postindex">
+    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="posts/octoprint-en-openwrt-tp-link-1043nd.html" class="u-url">Octoprint en OpenWRT (tp-link 1043nd)</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn">David Vinazza</span></p>
+            <p class="dateline"><a href="posts/octoprint-en-openwrt-tp-link-1043nd.html" rel="bookmark"><time class="published dt-published" datetime="2017-05-22T23:05:27-03:00" itemprop="datePublished" title="Fecha de publicación">2017-05-22 23:05</time></a></p>
+                <p class="commentline">        </p>
+<div class="g-commentcount" data-href="/posts/octoprint-en-openwrt-tp-link-1043nd.html"></div>
+<script src="https://apis.google.com/js/plusone.js"></script>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>Escriba su publicación aquí.
+<a class="reference external" href="http://csmatt.com/notes/?p=154">http://csmatt.com/notes/?p=154</a></p>
+<pre class="code bash"><a name="rest_code_74d89d6c86a241ff97b515dd3d8c632c-1"></a>opkg install kmod-usb-serial-ch341  <span class="c1"># Driver para el Arduino</span>
+</pre>
+</div>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="posts/migrador-de-dbs-postgresql.html" class="u-url">Migrador de DBs (PostgreSQL)</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn">David Vinazza</span></p>
+            <p class="dateline"><a href="posts/migrador-de-dbs-postgresql.html" rel="bookmark"><time class="published dt-published" datetime="2015-07-31T14:40:26-03:00" itemprop="datePublished" title="Fecha de publicación">2015-07-31 14:40</time></a></p>
+                <p class="commentline">        </p>
+<div class="g-commentcount" data-href="/posts/migrador-de-dbs-postgresql.html"></div>
+<script src="https://apis.google.com/js/plusone.js"></script>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>Hace poco necesité migrar varias bases de postgresql pesadas de un servidor a otro, de una version a otra además, así que tuve que repetir el procedimiento varias veces y asegurarme de que la migración no traía problemas y que la base migrada quedaba actualizada. Naturalmente que fui armando un script para automatizar todo lo posible.</p>
+<p>Básicamente lo que hice fue intercambiar las llaves de SSH para que el postgresql del origen pudiese conectarse en el destino. A partir de ahi, probé varias configuraciones para encontrar la más efectiva considerando el uso de recursos como cpu y red.</p>
+<p>En caso de que a alguien le sirva, lo dejo en <a class="reference external" href="http://pastebin.com/g75HRppc">pastebin</a>. Saludos!</p>
+</div>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="posts/bitlocker-en-debian.html" class="u-url">Bitlocker en Debian</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn">David Vinazza</span></p>
+            <p class="dateline"><a href="posts/bitlocker-en-debian.html" rel="bookmark"><time class="published dt-published" datetime="2015-07-13T22:51:03-03:00" itemprop="datePublished" title="Fecha de publicación">2015-07-13 22:51</time></a></p>
+                <p class="commentline">        </p>
+<div class="g-commentcount" data-href="/posts/bitlocker-en-debian.html"></div>
+<script src="https://apis.google.com/js/plusone.js"></script>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>Instalación de requisitos</p>
+<pre class="code bash"><a name="rest_code_9b2eb698dfee40dda92d5f02d5102870-1"></a>apt-get install libfuse-dev libpolarssl-dev
+<a name="rest_code_9b2eb698dfee40dda92d5f02d5102870-2"></a><span class="nb">cd</span> /tmp
+<a name="rest_code_9b2eb698dfee40dda92d5f02d5102870-3"></a>wget https://github.com/Aorimn/dislocker/archive/master.zip
+<a name="rest_code_9b2eb698dfee40dda92d5f02d5102870-4"></a>unzip master.zip
+<a name="rest_code_9b2eb698dfee40dda92d5f02d5102870-5"></a><span class="nb">cd</span> dislocker-master
+<a name="rest_code_9b2eb698dfee40dda92d5f02d5102870-6"></a>make
+<a name="rest_code_9b2eb698dfee40dda92d5f02d5102870-7"></a>sudo make install
+</pre>
+<p>Montaje de la unidad encriptada, primero como archivo intermedio.</p>
+<pre class="code bash"><a name="rest_code_6df43e41c5254ae79cf966b489a57b2a-1"></a>mkdir /tmp/dislocker <span class="c1">#creo una carpeta para el montaje intermedio</span>
+<a name="rest_code_6df43e41c5254ae79cf966b489a57b2a-2"></a>sudo dislocker -r -V <span class="o">[</span>particion<span class="o">]</span> -p<span class="o">[</span>clave<span class="o">]</span> /tmp/dislocker
+</pre>
+<p>Luego como montaje tradicional.</p>
+<pre class="code bash"><a name="rest_code_f4048ac2e2014f80a8347100ec32b1a7-1"></a>sudo mount -r -o loop /tmp/dislocker/dislocker-file <span class="o">[</span>carpeta donde montar<span class="o">]</span>
+</pre>
+</div>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="posts/limesurvey-etiquetas-de-paises.html" class="u-url">Limesurvey: Etiquetas de Paises</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn">David Vinazza</span></p>
+            <p class="dateline"><a href="posts/limesurvey-etiquetas-de-paises.html" rel="bookmark"><time class="published dt-published" datetime="2014-10-08T13:41:15-03:00" itemprop="datePublished" title="Fecha de publicación">2014-10-08 13:41</time></a></p>
+                <p class="commentline">        </p>
+<div class="g-commentcount" data-href="/posts/limesurvey-etiquetas-de-paises.html"></div>
+<script src="https://apis.google.com/js/plusone.js"></script>
+</div>
+    </header><div class="e-content entry-content">
+    <p>En caso de que a alguien le sirva, comparto por <a class="reference external" href="https://dl.dropboxusercontent.com/u/2867379/limesurvey/limesurvey_labelset_paises.lsl">dropbox</a> una lista de paises para armar desplegables.</p>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="posts/respaldarrestaurar-los-permisos-de-una-carpeta-con-backuppc.html" class="u-url">Respaldar/Restaurar los permisos de una carpeta con BackupPC</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn">David Vinazza</span></p>
+            <p class="dateline"><a href="posts/respaldarrestaurar-los-permisos-de-una-carpeta-con-backuppc.html" rel="bookmark"><time class="published dt-published" datetime="2014-09-12T21:44:40-03:00" itemprop="datePublished" title="Fecha de publicación">2014-09-12 21:44</time></a></p>
+                <p class="commentline">        </p>
+<div class="g-commentcount" data-href="/posts/respaldarrestaurar-los-permisos-de-una-carpeta-con-backuppc.html"></div>
+<script src="https://apis.google.com/js/plusone.js"></script>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>Hace unos días un servidor de archivos con windows amaneció con un RAID degradado. Si bien teníamos respaldo de los archivos, dada la complejidad del árbol de directorios, queríamos respaldar también los permisos de cada carpeta/compartido.</p>
+<p>Descubrimos que windows guarda las carpetas compartidas y los permisos de acceso en el registro, y esto vuelve la configuración básica fácil de exportar/importar. Pero no va más allá de quien puede acceder a la carpeta.</p>
+<pre class="code text"><a name="rest_code_cfb53e477d6d4a96aee63af8dbb8dbe9-1"></a>regedit.exe /E compartidos.reg "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanServer\Shares"
+</pre>
+<p>Por otro lado, microsoft tiene su propias herramienta para administrar los permisos. Pero no llegamos muy lejos por ahí. Nos daba algunos errores incomprensibles.. Así que buscamos directamente una third party que pueda resolver nuestro dilema sin chillar. Ahí encontramos a <a class="reference external" href="https://helgeklein.com/setacl/">SetACL</a>. Si bien tiene una versión paga con interfaz gráfica, la versión gratuita por línea de comandos resultó ideal para programar lo que necesitabamos.</p>
+</div>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="posts/ver-youtube-live-con-vlc.html" class="u-url">Ver Youtube Live con VLC</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn">David Vinazza</span></p>
+            <p class="dateline"><a href="posts/ver-youtube-live-con-vlc.html" rel="bookmark"><time class="published dt-published" datetime="2014-08-31T19:25:53-03:00" itemprop="datePublished" title="Fecha de publicación">2014-08-31 19:25</time></a></p>
+                <p class="commentline">        </p>
+<div class="g-commentcount" data-href="/posts/ver-youtube-live-con-vlc.html"></div>
+<script src="https://apis.google.com/js/plusone.js"></script>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>Estoy mirando 'Fútbol para Todos' con el VLC, funciona espectacular. El único problema que le encontré: no puedo elegir la resolución, y el VLC no siempre reanuda automáticamente la recepción.</p>
+<p>Por suerte encontré una aplicación en python que se encarga de extraer el stream adecuado y abrir el VLC para verlo.</p>
+<pre class="code bash"><a name="rest_code_dd6b9dab9df24558b2222d610d863653-1"></a>$ sudo pip install livestreamer
+<a name="rest_code_dd6b9dab9df24558b2222d610d863653-2"></a>
+<a name="rest_code_dd6b9dab9df24558b2222d610d863653-3"></a><span class="c1">#livestreamer [url del video]</span>
+<a name="rest_code_dd6b9dab9df24558b2222d610d863653-4"></a>$ livestreamer http://www.youtube.com/watch?v<span class="o">=</span>HBfpr5Ye35c
+<a name="rest_code_dd6b9dab9df24558b2222d610d863653-5"></a><span class="o">[</span>cli<span class="o">][</span>info<span class="o">]</span> Found matching plugin youtube <span class="k">for</span> URL http://www.youtube.com/watch?v<span class="o">=</span>HBfpr5Ye35c
+<a name="rest_code_dd6b9dab9df24558b2222d610d863653-6"></a>Available streams: 240p, 360p, 480p, 720p <span class="o">(</span>best<span class="o">)</span>, 72p <span class="o">(</span>worst<span class="o">)</span>
+<a name="rest_code_dd6b9dab9df24558b2222d610d863653-7"></a>
+<a name="rest_code_dd6b9dab9df24558b2222d610d863653-8"></a><span class="c1">#livestreamer [url del video] [stream]</span>
+<a name="rest_code_dd6b9dab9df24558b2222d610d863653-9"></a>$ livestreamer http://www.youtube.com/watch?v<span class="o">=</span>HBfpr5Ye35c 480p
+<a name="rest_code_dd6b9dab9df24558b2222d610d863653-10"></a><span class="o">[</span>cli<span class="o">][</span>info<span class="o">]</span> Found matching plugin youtube <span class="k">for</span> URL http://www.youtube.com/watch?v<span class="o">=</span>HBfpr5Ye35c
+<a name="rest_code_dd6b9dab9df24558b2222d610d863653-11"></a><span class="o">[</span>cli<span class="o">][</span>info<span class="o">]</span> Available streams: 240p, 360p, 480p, 720p <span class="o">(</span>best<span class="o">)</span>, 72p <span class="o">(</span>worst<span class="o">)</span>
+<a name="rest_code_dd6b9dab9df24558b2222d610d863653-12"></a><span class="o">[</span>cli<span class="o">][</span>info<span class="o">]</span> Opening stream: 480p <span class="o">(</span>hls<span class="o">)</span>
+<a name="rest_code_dd6b9dab9df24558b2222d610d863653-13"></a><span class="o">[</span>cli<span class="o">][</span>info<span class="o">]</span> Starting player: /usr/bin/vlc
+</pre>
+</div>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="posts/mechanize-y-selenium-en-python.html" class="u-url">Mechanize y Selenium en Python</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn">David Vinazza</span></p>
+            <p class="dateline"><a href="posts/mechanize-y-selenium-en-python.html" rel="bookmark"><time class="published dt-published" datetime="2014-08-25T19:33:58-03:00" itemprop="datePublished" title="Fecha de publicación">2014-08-25 19:33</time></a></p>
+                <p class="commentline">        </p>
+<div class="g-commentcount" data-href="/posts/mechanize-y-selenium-en-python.html"></div>
+<script src="https://apis.google.com/js/plusone.js"></script>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>Hace un tiempo vengo jugando en python con mechanize y selenium, dos módulos para automatizar el comportamiento de un usuario detras de un navegador.</p>
+<p>Originalmente lo necesite para programar algunas funciones que la API de Limesurvey no trae (ya voy a armar un post aparte de este tema), pero después le encontré mil posibilidades. Arme un script para consultar mi saldo de teléfono, otro para que gmail descargue mis correos de otras cuentas, uno para descargar contenidos de un sitio que requiere loguearse y estoy pensando en algo más polémico...</p>
+</div>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="posts/encoger-discos-virtualbox.html" class="u-url">Encoger discos VirtualBox</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn">David Vinazza</span></p>
+            <p class="dateline"><a href="posts/encoger-discos-virtualbox.html" rel="bookmark"><time class="published dt-published" datetime="2014-07-24T15:16:47-03:00" itemprop="datePublished" title="Fecha de publicación">2014-07-24 15:16</time></a></p>
+                <p class="commentline">        </p>
+<div class="g-commentcount" data-href="/posts/encoger-discos-virtualbox.html"></div>
+<script src="https://apis.google.com/js/plusone.js"></script>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>La operacion de encoger los discos de VirtualBox no siempre es directa. A veces es necesario 'limpiar' dichos discos de forma tal que todos sus sectores queden realmente vacíos (y no simplemente 'huérfanos').</p>
+<p>Cuando el disco en cuestión tiene particiones linux, podemos utilizar la aplicación 'zerofree' para limpiarlo. E incluso podemos montar el disco directamente en un anfitrion para saltarnos la virtualización en lo que a la limpieza concierne.</p>
+<ol class="arabic simple">
+<li>Montaje en el anfitrion</li>
+</ol>
+<pre class="code bash"><a name="rest_code_4f41c3b2b10f4f4b8b99e4e573a1a0b9-1"></a>modprobe nbd
+<a name="rest_code_4f41c3b2b10f4f4b8b99e4e573a1a0b9-2"></a>qemu-nbd -c /dev/nbd0 <span class="o">[</span>archivo vdi<span class="o">]</span>
+<a name="rest_code_4f41c3b2b10f4f4b8b99e4e573a1a0b9-3"></a>mount -o ro /dev/nbd0p<span class="o">[</span>nro de particion<span class="o">]</span> <span class="o">[</span>punto de montaje<span class="o">]</span>
+<a name="rest_code_4f41c3b2b10f4f4b8b99e4e573a1a0b9-4"></a><span class="c1">#montarlo como read only, para el zerofree</span>
+</pre>
+<ol class="arabic simple" start="2">
+<li>Limpieza</li>
+</ol>
+<pre class="code bash"><a name="rest_code_4ae17f8f0c134f33b552ea435f1753c4-1"></a>zerofree /dev/nbd0<span class="o">[</span>nro de particion<span class="o">]</span>
+</pre>
+<ol class="arabic simple" start="3">
+<li>Recuperar el espacio asignado</li>
+</ol>
+<pre class="code bash"><a name="rest_code_cdfcaf23711f4af1b78d439f8c159c70-1"></a>umount /dev/nbd0p<span class="o">[</span>nro de particion<span class="o">]</span>
+<a name="rest_code_cdfcaf23711f4af1b78d439f8c159c70-2"></a>VBoxManage modifyhd <span class="o">[</span>archivo vdi<span class="o">]</span> --compact
+</pre>
+<p>Sitios consultados:
+<a class="reference external" href="http://bethesignal.org/blog/2011/01/05/how-to-mount-virtualbox-vdi-image/">http://bethesignal.org/blog/2011/01/05/how-to-mount-virtualbox-vdi-image/</a>
+<a class="reference external" href="http://www.thelinuxdaily.com/2010/02/shrinking-a-dynamic-virtualbox-disk-image/">http://www.thelinuxdaily.com/2010/02/shrinking-a-dynamic-virtualbox-disk-image/</a></p>
+</div>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="posts/problemas-de-brillo-y-resolucion-en-linux.html" class="u-url">Problemas de Brillo y Resolución en Linux</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn">David Vinazza</span></p>
+            <p class="dateline"><a href="posts/problemas-de-brillo-y-resolucion-en-linux.html" rel="bookmark"><time class="published dt-published" datetime="2014-07-16T15:28:50-03:00" itemprop="datePublished" title="Fecha de publicación">2014-07-16 15:28</time></a></p>
+                <p class="commentline">        </p>
+<div class="g-commentcount" data-href="/posts/problemas-de-brillo-y-resolucion-en-linux.html"></div>
+<script src="https://apis.google.com/js/plusone.js"></script>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>Varias veces me sucedió que, al instalar linux en PCs con alguna placa de video poco común, sea necesario activar el flag 'nomodeset' en el kernel.</p>
+<p>Hace unos días un compañero de trabajo me comentó que al instalar Ubuntu en su notebook, la PC booteaba 'a oscuras', es decir, no funcionaba el backlight. Cuando agrego la opción 'nomodeset', se resolvió el probema del brillo... pero dió lugar a un nuevo fenómeno: la computadora iniciaba con una resolución vetusta e inapropiada.</p>
+<p>Para resolverlo, sustituimos el parámetro 'nomodeset' por otros dos, 'acpi_osi=Linux' y 'acpi_backlight=vendor'.</p>
+<p>El modelo de la notebook es: hp pavilion dm3-1048la.</p>
+<p>El output del comando 'lscpi' en lo relativo a la placa de video.</p>
+<pre class="code bash"><a name="rest_code_06f5b1de826a4119b5a88368d824af66-1"></a><span class="m">00</span>:02.0 VGA compatible controller: Intel Corporation Mobile <span class="m">4</span> Series Chipset Integrated Graphics Controller <span class="o">(</span>rev <span class="m">07</span><span class="o">)</span> <span class="o">(</span>prog-if <span class="m">00</span> <span class="o">[</span>VGA controller<span class="o">])</span>
+<a name="rest_code_06f5b1de826a4119b5a88368d824af66-2"></a>    Subsystem: Hewlett-Packard Company Device <span class="m">3649</span>
+<a name="rest_code_06f5b1de826a4119b5a88368d824af66-3"></a>    Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr- Stepping- SERR- FastB2B- DisINTx+
+<a name="rest_code_06f5b1de826a4119b5a88368d824af66-4"></a>    Status: Cap+ 66MHz- UDF- FastB2B+ ParErr- <span class="nv">DEVSEL</span><span class="o">=</span>fast &gt;TAbort- &lt;TAbort- &lt;MAbort- &gt;SERR- &lt;PERR- INTx-
+<a name="rest_code_06f5b1de826a4119b5a88368d824af66-5"></a>    Latency: <span class="m">0</span>
+<a name="rest_code_06f5b1de826a4119b5a88368d824af66-6"></a>    Interrupt: pin A routed to IRQ <span class="m">44</span>
+<a name="rest_code_06f5b1de826a4119b5a88368d824af66-7"></a>    Region <span class="m">0</span>: Memory at d0000000 <span class="o">(</span><span class="m">64</span>-bit, non-prefetchable<span class="o">)</span> <span class="o">[</span><span class="nv">size</span><span class="o">=</span>4M<span class="o">]</span>
+<a name="rest_code_06f5b1de826a4119b5a88368d824af66-8"></a>    Region <span class="m">2</span>: Memory at c0000000 <span class="o">(</span><span class="m">64</span>-bit, prefetchable<span class="o">)</span> <span class="o">[</span><span class="nv">size</span><span class="o">=</span>256M<span class="o">]</span>
+<a name="rest_code_06f5b1de826a4119b5a88368d824af66-9"></a>    Region <span class="m">4</span>: I/O ports at 40f0 <span class="o">[</span><span class="nv">size</span><span class="o">=</span><span class="m">8</span><span class="o">]</span>
+<a name="rest_code_06f5b1de826a4119b5a88368d824af66-10"></a>    Expansion ROM at &lt;unassigned&gt; <span class="o">[</span>disabled<span class="o">]</span>
+<a name="rest_code_06f5b1de826a4119b5a88368d824af66-11"></a>    Capabilities: <span class="o">[</span><span class="m">90</span><span class="o">]</span> MSI: Enable+ <span class="nv">Count</span><span class="o">=</span><span class="m">1</span>/1 Maskable- 64bit-
+<a name="rest_code_06f5b1de826a4119b5a88368d824af66-12"></a>        Address: fee0300c  Data: 41e1
+<a name="rest_code_06f5b1de826a4119b5a88368d824af66-13"></a>    Capabilities: <span class="o">[</span>d0<span class="o">]</span> Power Management version <span class="m">3</span>
+<a name="rest_code_06f5b1de826a4119b5a88368d824af66-14"></a>        Flags: PMEClk- DSI+ D1- D2- <span class="nv">AuxCurrent</span><span class="o">=</span>0mA PME<span class="o">(</span>D0-,D1-,D2-,D3hot-,D3cold-<span class="o">)</span>
+<a name="rest_code_06f5b1de826a4119b5a88368d824af66-15"></a>        Status: D0 NoSoftRst- PME-Enable- <span class="nv">DSel</span><span class="o">=</span><span class="m">0</span> <span class="nv">DScale</span><span class="o">=</span><span class="m">0</span> PME-
+<a name="rest_code_06f5b1de826a4119b5a88368d824af66-16"></a>    Kernel driver in use: i915
+<a name="rest_code_06f5b1de826a4119b5a88368d824af66-17"></a><span class="m">00</span>: <span class="m">86</span> <span class="m">80</span> <span class="m">42</span> 2a <span class="m">07</span> <span class="m">04</span> <span class="m">90</span> <span class="m">00</span> <span class="m">07</span> <span class="m">00</span> <span class="m">00</span> <span class="m">03</span> <span class="m">00</span> <span class="m">00</span> <span class="m">80</span> <span class="m">00</span>
+<a name="rest_code_06f5b1de826a4119b5a88368d824af66-18"></a><span class="m">10</span>: <span class="m">04</span> <span class="m">00</span> <span class="m">00</span> d0 <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> 0c <span class="m">00</span> <span class="m">00</span> c0 <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span>
+<a name="rest_code_06f5b1de826a4119b5a88368d824af66-19"></a><span class="m">20</span>: f1 <span class="m">40</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> 3c <span class="m">10</span> <span class="m">49</span> <span class="m">36</span>
+<a name="rest_code_06f5b1de826a4119b5a88368d824af66-20"></a><span class="m">30</span>: <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">90</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> 0b <span class="m">01</span> <span class="m">00</span> <span class="m">00</span>
+</pre>
+<pre class="code bash"><a name="rest_code_332584d4724a4c7385e187eeb84cab44-1"></a><span class="m">00</span>:02.1 Display controller: Intel Corporation Mobile <span class="m">4</span> Series Chipset Integrated Graphics Controller <span class="o">(</span>rev <span class="m">07</span><span class="o">)</span>
+<a name="rest_code_332584d4724a4c7385e187eeb84cab44-2"></a>    Subsystem: Hewlett-Packard Company Device <span class="m">3649</span>
+<a name="rest_code_332584d4724a4c7385e187eeb84cab44-3"></a>    Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr- Stepping- SERR- FastB2B- DisINTx-
+<a name="rest_code_332584d4724a4c7385e187eeb84cab44-4"></a>    Status: Cap+ 66MHz- UDF- FastB2B+ ParErr- <span class="nv">DEVSEL</span><span class="o">=</span>fast &gt;TAbort- &lt;TAbort- &lt;MAbort- &gt;SERR- &lt;PERR- INTx-
+<a name="rest_code_332584d4724a4c7385e187eeb84cab44-5"></a>    Latency: <span class="m">0</span>
+<a name="rest_code_332584d4724a4c7385e187eeb84cab44-6"></a>    Region <span class="m">0</span>: Memory at d2400000 <span class="o">(</span><span class="m">64</span>-bit, non-prefetchable<span class="o">)</span> <span class="o">[</span><span class="nv">size</span><span class="o">=</span>1M<span class="o">]</span>
+<a name="rest_code_332584d4724a4c7385e187eeb84cab44-7"></a>    Capabilities: <span class="o">[</span>d0<span class="o">]</span> Power Management version <span class="m">3</span>
+<a name="rest_code_332584d4724a4c7385e187eeb84cab44-8"></a>        Flags: PMEClk- DSI+ D1- D2- <span class="nv">AuxCurrent</span><span class="o">=</span>0mA PME<span class="o">(</span>D0-,D1-,D2-,D3hot-,D3cold-<span class="o">)</span>
+<a name="rest_code_332584d4724a4c7385e187eeb84cab44-9"></a>        Status: D0 NoSoftRst- PME-Enable- <span class="nv">DSel</span><span class="o">=</span><span class="m">0</span> <span class="nv">DScale</span><span class="o">=</span><span class="m">0</span> PME-
+<a name="rest_code_332584d4724a4c7385e187eeb84cab44-10"></a><span class="m">00</span>: <span class="m">86</span> <span class="m">80</span> <span class="m">43</span> 2a <span class="m">07</span> <span class="m">00</span> <span class="m">90</span> <span class="m">00</span> <span class="m">07</span> <span class="m">00</span> <span class="m">80</span> <span class="m">03</span> <span class="m">00</span> <span class="m">00</span> <span class="m">80</span> <span class="m">00</span>
+<a name="rest_code_332584d4724a4c7385e187eeb84cab44-11"></a><span class="m">10</span>: <span class="m">04</span> <span class="m">00</span> <span class="m">40</span> d2 <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span>
+<a name="rest_code_332584d4724a4c7385e187eeb84cab44-12"></a><span class="m">20</span>: <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> 3c <span class="m">10</span> <span class="m">49</span> <span class="m">36</span>
+<a name="rest_code_332584d4724a4c7385e187eeb84cab44-13"></a><span class="m">30</span>: <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> d0 <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span>
+</pre>
+</div>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="posts/alertas-de-backuppc-sin-sendmail.html" class="u-url">Alertas de BackupPC sin sendmail</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn">David Vinazza</span></p>
+            <p class="dateline"><a href="posts/alertas-de-backuppc-sin-sendmail.html" rel="bookmark"><time class="published dt-published" datetime="2014-07-01T21:37:49-03:00" itemprop="datePublished" title="Fecha de publicación">2014-07-01 21:37</time></a></p>
+                <p class="commentline">        </p>
+<div class="g-commentcount" data-href="/posts/alertas-de-backuppc-sin-sendmail.html"></div>
+<script src="https://apis.google.com/js/plusone.js"></script>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>Reemplazar en la configuración del BackupPC el valro de la opción de 'SendmailPath' por '/usr/bin/msmtp'</p>
+<pre class="code bash"><a name="rest_code_c520492c7f4b4b7a869d90e5c8816c1b-1"></a>apt-get install msmtp
+</pre>
+<p>Crear un archivo de configuracion en el home de backuppc</p>
+<pre class="code bash"><a name="rest_code_483f2c8d72104fbab1ef9de98e96d1ff-1"></a>su - backuppc
+<a name="rest_code_483f2c8d72104fbab1ef9de98e96d1ff-2"></a>touch .msmtprc
+<a name="rest_code_483f2c8d72104fbab1ef9de98e96d1ff-3"></a>chmod .msmtprc
+</pre>
+<p>Cargar los siguientes datos dentro.</p>
+<pre class="code text"><a name="rest_code_25a000f132ad4d239b7b98bf578b7851-1"></a>account default
+<a name="rest_code_25a000f132ad4d239b7b98bf578b7851-2"></a>logfile ~/.msmtp.log
+<a name="rest_code_25a000f132ad4d239b7b98bf578b7851-3"></a>tls off
+<a name="rest_code_25a000f132ad4d239b7b98bf578b7851-4"></a>auth login
+<a name="rest_code_25a000f132ad4d239b7b98bf578b7851-5"></a>host [servidor de correo]
+<a name="rest_code_25a000f132ad4d239b7b98bf578b7851-6"></a>from [usuario]
+<a name="rest_code_25a000f132ad4d239b7b98bf578b7851-7"></a>user [usuario]
+<a name="rest_code_25a000f132ad4d239b7b98bf578b7851-8"></a>password [clave]
+</pre>
+</div>
+    </div>
+    </article>
+</div>
+        <nav class="postindexpager"><ul class="pager">
+<li class="next">
+                <a href="index-1.html" rel="next">Publicaciones anteriores</a>
+            </li>
+        </ul></nav>
+</div>
+        <!--End of body content-->
+
+        <footer id="footer">
+            Contents © 2017         <a href="mailto:davidvinazza@gmail.com">David Vinazza</a> - Powered by         <a href="http://getnikola.com" rel="nofollow">Nikola</a>         
+            
+        </footer>
+</div>
+</div>
+
+            <script src="assets/js/jquery.min.js"></script><script src="assets/js/bootstrap.min.js"></script><script src="assets/js/moment-with-locales.min.js"></script><script src="assets/js/fancydates.js"></script><script src="assets/js/mathjax.js"></script><script src="assets/js/jquery.colorbox-min.js"></script><script src="assets/js/colorbox-i18n/jquery.colorbox-es.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
+    moment.locale("es");
+    fancydates(0, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates -->
+</body>
+</html>

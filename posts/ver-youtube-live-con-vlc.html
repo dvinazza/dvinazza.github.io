@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html prefix="
+og: http://ogp.me/ns#
+article: http://ogp.me/ns/article#
+" lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ver Youtube Live con VLC | DocumentarI/O</title>
+<link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/rst.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/code.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/colorbox.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/theme.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/ipython.min.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/nikola_ipython.css" rel="stylesheet" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../rss.xml">
+<link rel="canonical" href="http://dvinazza.github.io/posts/ver-youtube-live-con-vlc.html">
+<!--[if lt IE 9]><script src="../assets/js/html5.js"></script><![endif]--><meta name="author" content="David Vinazza">
+<meta property="og:site_name" content="DocumentarI/O">
+<meta property="og:title" content="Ver Youtube Live con VLC">
+<meta property="og:url" content="http://dvinazza.github.io/posts/ver-youtube-live-con-vlc.html">
+<meta property="og:description" content="Estoy mirando 'Fútbol para Todos' con el VLC, funciona espectacular. El único problema que le encontré: no puedo elegir la resolución, y el VLC no siempre reanuda automáticamente la recepción.
+Por sue">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2014-08-31T19:25:53-03:00">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Ir al contenido principal</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-inverse navbar-static-top"><div class="container">
+<!-- This keeps the margins nice -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+            <span class="sr-only">Mostrar navegación</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://dvinazza.github.io/">
+
+                <span id="blog-title">DocumentarI/O</span>
+            </a>
+        </div>
+<!-- /.navbar-header -->
+        <div class="collapse navbar-collapse" id="bs-navbar" aria-expanded="false">
+            <ul class="nav navbar-nav">
+<li>
+<a href="../archive.html">Archivo</a>
+                </li>
+<li>
+<a href="../categories/index.html">Tags</a>
+                </li>
+<li>
+<a href="../rss.xml">feed RSS</a>
+            </li>
+<li class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown">Otros Sitios<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+<li>
+<a href="https://github.com/dvinazza/">github</a>
+                    </li>
+<li>
+<a href="http://about.me/david.vinazza">about.me</a>
+                    </li>
+<li>
+<a href="http://ar.linkedin.com/in/davidvinazza/">linked.in</a>
+            </li>
+</ul>
+</li>
+</ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+    <a href="ver-youtube-live-con-vlc.rst" id="sourcelink">Código fuente</a>
+    </li>
+                
+            </ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        <div class="row">
+            
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="#" class="u-url">Ver Youtube Live con VLC</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                    David Vinazza
+            </span></p>
+            <p class="dateline"><a href="#" rel="bookmark"><time class="published dt-published" datetime="2014-08-31T19:25:53-03:00" itemprop="datePublished" title="2014-08-31 19:25">2014-08-31 19:25</time></a></p>
+                <p class="commentline">        </p>
+<div class="g-commentcount" data-href="/posts/ver-youtube-live-con-vlc.html"></div>
+<script src="https://apis.google.com/js/plusone.js"></script><p class="sourceline"><a href="ver-youtube-live-con-vlc.rst" id="sourcelink">Código fuente</a></p>
+
+        </div>
+        
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p>Estoy mirando 'Fútbol para Todos' con el VLC, funciona espectacular. El único problema que le encontré: no puedo elegir la resolución, y el VLC no siempre reanuda automáticamente la recepción.</p>
+<p>Por suerte encontré una aplicación en python que se encarga de extraer el stream adecuado y abrir el VLC para verlo.</p>
+<pre class="code bash"><a name="rest_code_dd6b9dab9df24558b2222d610d863653-1"></a>$ sudo pip install livestreamer
+<a name="rest_code_dd6b9dab9df24558b2222d610d863653-2"></a>
+<a name="rest_code_dd6b9dab9df24558b2222d610d863653-3"></a><span class="c1">#livestreamer [url del video]</span>
+<a name="rest_code_dd6b9dab9df24558b2222d610d863653-4"></a>$ livestreamer http://www.youtube.com/watch?v<span class="o">=</span>HBfpr5Ye35c
+<a name="rest_code_dd6b9dab9df24558b2222d610d863653-5"></a><span class="o">[</span>cli<span class="o">][</span>info<span class="o">]</span> Found matching plugin youtube <span class="k">for</span> URL http://www.youtube.com/watch?v<span class="o">=</span>HBfpr5Ye35c
+<a name="rest_code_dd6b9dab9df24558b2222d610d863653-6"></a>Available streams: 240p, 360p, 480p, 720p <span class="o">(</span>best<span class="o">)</span>, 72p <span class="o">(</span>worst<span class="o">)</span>
+<a name="rest_code_dd6b9dab9df24558b2222d610d863653-7"></a>
+<a name="rest_code_dd6b9dab9df24558b2222d610d863653-8"></a><span class="c1">#livestreamer [url del video] [stream]</span>
+<a name="rest_code_dd6b9dab9df24558b2222d610d863653-9"></a>$ livestreamer http://www.youtube.com/watch?v<span class="o">=</span>HBfpr5Ye35c 480p
+<a name="rest_code_dd6b9dab9df24558b2222d610d863653-10"></a><span class="o">[</span>cli<span class="o">][</span>info<span class="o">]</span> Found matching plugin youtube <span class="k">for</span> URL http://www.youtube.com/watch?v<span class="o">=</span>HBfpr5Ye35c
+<a name="rest_code_dd6b9dab9df24558b2222d610d863653-11"></a><span class="o">[</span>cli<span class="o">][</span>info<span class="o">]</span> Available streams: 240p, 360p, 480p, 720p <span class="o">(</span>best<span class="o">)</span>, 72p <span class="o">(</span>worst<span class="o">)</span>
+<a name="rest_code_dd6b9dab9df24558b2222d610d863653-12"></a><span class="o">[</span>cli<span class="o">][</span>info<span class="o">]</span> Opening stream: 480p <span class="o">(</span>hls<span class="o">)</span>
+<a name="rest_code_dd6b9dab9df24558b2222d610d863653-13"></a><span class="o">[</span>cli<span class="o">][</span>info<span class="o">]</span> Starting player: /usr/bin/vlc
+</pre>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul class="pager hidden-print">
+<li class="previous">
+                <a href="mechanize-y-selenium-en-python.html" rel="prev" title="Mechanize y Selenium en Python">Publicación anterior</a>
+            </li>
+            <li class="next">
+                <a href="respaldarrestaurar-los-permisos-de-una-carpeta-con-backuppc.html" rel="next" title="Respaldar/Restaurar los permisos de una carpeta con BackupPC">Siguiente publicación</a>
+            </li>
+        </ul></nav></aside><section class="comments"><h2>Comentarios</h2>
+                <script src="https://apis.google.com/js/plusone.js"></script><div class="g-comments" data-href="http://dvinazza.github.io/posts/ver-youtube-live-con-vlc.html" data-first_party_property="BLOGGER" data-view_type="FILTERED_POSTMOD">
+</div>
+
+
+        </section></article>
+</div>
+        <!--End of body content-->
+
+        <footer id="footer">
+            Contents © 2017         <a href="mailto:davidvinazza@gmail.com">David Vinazza</a> - Powered by         <a href="http://getnikola.com" rel="nofollow">Nikola</a>         
+            
+        </footer>
+</div>
+</div>
+
+            <script src="../assets/js/jquery.min.js"></script><script src="../assets/js/bootstrap.min.js"></script><script src="../assets/js/moment-with-locales.min.js"></script><script src="../assets/js/fancydates.js"></script><script src="../assets/js/mathjax.js"></script><script src="../assets/js/jquery.colorbox-min.js"></script><script src="../assets/js/colorbox-i18n/jquery.colorbox-es.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
+    moment.locale("es");
+    fancydates(0, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates -->
+</body>
+</html>

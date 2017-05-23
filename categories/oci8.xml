@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>DocumentarI/O (Publicaciones sobre oci8)</title><link>http://dvinazza.github.io</link><description></description><atom:link href="http://dvinazza.github.io/categories/oci8.xml" rel="self" type="application/rss+xml"></atom:link><language>es</language><lastBuildDate>Tue, 23 May 2017 02:31:54 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Oracle 10 en PHP</title><link>http://dvinazza.github.io/posts/oracle-10-en-php.html</link><dc:creator>David Vinazza</dc:creator><description>&lt;div&gt;&lt;p&gt;Tiempo atras necesité instalar una versión antigua del cliente de Oracle para un sitio en PHP.&lt;/p&gt;
+&lt;p&gt;En debian, va a ser necesario tener instalado el programa 'alien', porque Oracle solo provee los RPM para instalar.&lt;/p&gt;
+&lt;p&gt;Para no depender de Oracle, guardé una copia de los archivos en &lt;a class="reference external" href="https://www.dropbox.com/sh/jyz3zhg0gny63u5/17TascJy9u/instantclient?lst"&gt;dropbox&lt;/a&gt;.&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_adb8baa7aa34486b9b020a77e5cd70b3-1"&gt;&lt;/a&gt;alien -i oracle-instantclient-basic-10.2.0.3-1.i386.rpm
+&lt;a name="rest_code_adb8baa7aa34486b9b020a77e5cd70b3-2"&gt;&lt;/a&gt;alien -i oracle-instantclient-devel-10.2.0.3-1.i386.rpm
+&lt;/pre&gt;&lt;p&gt;También va a ser necesario activar la extensión OCI8, mediante el programa 'pecl', creo que es parte del packete 'php-pear'.&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_9d66ec9376d04a879fdb486582b40aed-1"&gt;&lt;/a&gt;pecl install oci8
+&lt;/pre&gt;&lt;p&gt;Hay que verificar que en la configuración de php.ini exista lo siguiente&lt;/p&gt;
+&lt;pre class="code text"&gt;&lt;a name="rest_code_03c11c7d85344e01ad7266cab8d24703-1"&gt;&lt;/a&gt;extension=oci8.so
+&lt;/pre&gt;&lt;/div&gt;</description><category>instantclient</category><category>linux</category><category>oci8</category><category>oracle</category><category>php</category><guid>http://dvinazza.github.io/posts/oracle-10-en-php.html</guid><pubDate>Mon, 30 Jun 2014 21:54:03 GMT</pubDate></item></channel></rss>

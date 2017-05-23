@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html prefix="
+og: http://ogp.me/ns#
+article: http://ogp.me/ns/article#
+" lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Configuración Básica de Nagios Core a partir de los sources">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Instalando Nagios Core | DocumentarI/O</title>
+<link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/rst.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/code.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/colorbox.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/theme.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/ipython.min.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/nikola_ipython.css" rel="stylesheet" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../rss.xml">
+<link rel="canonical" href="http://dvinazza.github.io/posts/instalando-nagios-core.html">
+<!--[if lt IE 9]><script src="../assets/js/html5.js"></script><![endif]--><meta name="author" content="David Vinazza">
+<meta property="og:site_name" content="DocumentarI/O">
+<meta property="og:title" content="Instalando Nagios Core">
+<meta property="og:url" content="http://dvinazza.github.io/posts/instalando-nagios-core.html">
+<meta property="og:description" content="Configuración Básica de Nagios Core a partir de los sources">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2014-06-30T11:06:50-03:00">
+<meta property="article:tag" content="linux">
+<meta property="article:tag" content="monitoring">
+<meta property="article:tag" content="nagios">
+<meta property="article:tag" content="network">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Ir al contenido principal</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-inverse navbar-static-top"><div class="container">
+<!-- This keeps the margins nice -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+            <span class="sr-only">Mostrar navegación</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://dvinazza.github.io/">
+
+                <span id="blog-title">DocumentarI/O</span>
+            </a>
+        </div>
+<!-- /.navbar-header -->
+        <div class="collapse navbar-collapse" id="bs-navbar" aria-expanded="false">
+            <ul class="nav navbar-nav">
+<li>
+<a href="../archive.html">Archivo</a>
+                </li>
+<li>
+<a href="../categories/index.html">Tags</a>
+                </li>
+<li>
+<a href="../rss.xml">feed RSS</a>
+            </li>
+<li class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown">Otros Sitios<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+<li>
+<a href="https://github.com/dvinazza/">github</a>
+                    </li>
+<li>
+<a href="http://about.me/david.vinazza">about.me</a>
+                    </li>
+<li>
+<a href="http://ar.linkedin.com/in/davidvinazza/">linked.in</a>
+            </li>
+</ul>
+</li>
+</ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+    <a href="instalando-nagios-core.rst" id="sourcelink">Código fuente</a>
+    </li>
+                
+            </ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        <div class="row">
+            
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="#" class="u-url">Instalando Nagios Core</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                    David Vinazza
+            </span></p>
+            <p class="dateline"><a href="#" rel="bookmark"><time class="published dt-published" datetime="2014-06-30T11:06:50-03:00" itemprop="datePublished" title="2014-06-30 11:06">2014-06-30 11:06</time></a></p>
+                <p class="commentline">        </p>
+<div class="g-commentcount" data-href="/posts/instalando-nagios-core.html"></div>
+<script src="https://apis.google.com/js/plusone.js"></script><p class="sourceline"><a href="instalando-nagios-core.rst" id="sourcelink">Código fuente</a></p>
+
+        </div>
+        
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p>Hace tiempo vengo postergando pasar del Nagios disponible en los repositorios de debian/ubuntu a la versión más reciente de Nagios. Por suerte, cuando por fin me decidí encontré mucha documentación al respecto. No inventé nada, lo único que hice fue recopilar información de varios sitios y darle un diseño más simpático, para que sirva de documentación.</p>
+<p>requerimientos: apache y php activado</p>
+<pre class="code bash"><a name="rest_code_82aef65bf861459e9a0cc912f827e57d-1"></a>apt-get install build-essential
+<a name="rest_code_82aef65bf861459e9a0cc912f827e57d-2"></a>
+<a name="rest_code_82aef65bf861459e9a0cc912f827e57d-3"></a><span class="nb">cd</span> /tmp
+<a name="rest_code_82aef65bf861459e9a0cc912f827e57d-4"></a>wget http://prdownloads.sourceforge.net/sourceforge/nagios/nagios-4.0.7.tar.gz
+<a name="rest_code_82aef65bf861459e9a0cc912f827e57d-5"></a>tar xvfz nagios-4.0.7.tar.gz
+<a name="rest_code_82aef65bf861459e9a0cc912f827e57d-6"></a><span class="nb">cd</span> nagios-4.0.7
+</pre>
+<p>Creamos los usuarios y grupones necesarios</p>
+<pre class="code bash"><a name="rest_code_a572cfbe8e694a138538a9e11a6c339b-1"></a>useradd nagios
+<a name="rest_code_a572cfbe8e694a138538a9e11a6c339b-2"></a>groupadd nagcmd
+<a name="rest_code_a572cfbe8e694a138538a9e11a6c339b-3"></a>/usr/sbin/usermod -a -G nagios nagios
+<a name="rest_code_a572cfbe8e694a138538a9e11a6c339b-4"></a>/usr/sbin/usermod -a -G nagcmd www-data
+<a name="rest_code_a572cfbe8e694a138538a9e11a6c339b-5"></a>/usr/sbin/usermod -a -G nagcmd nagios
+</pre>
+<p>Procedemos con la instalación</p>
+<pre class="code bash"><a name="rest_code_482d3dad3a764792b539865d5fa3a64a-1"></a>./configure --with-nagios-group<span class="o">=</span>nagios --with-command-group<span class="o">=</span>nagcmd --with-mail<span class="o">=</span>/usr/bin/sendmail --with-httpd_conf<span class="o">=</span>/etc/apache2/conf-available
+<a name="rest_code_482d3dad3a764792b539865d5fa3a64a-2"></a>make all
+<a name="rest_code_482d3dad3a764792b539865d5fa3a64a-3"></a>make install
+<a name="rest_code_482d3dad3a764792b539865d5fa3a64a-4"></a>make install-init
+<a name="rest_code_482d3dad3a764792b539865d5fa3a64a-5"></a>make install-config
+<a name="rest_code_482d3dad3a764792b539865d5fa3a64a-6"></a>make install-commandmode
+<a name="rest_code_482d3dad3a764792b539865d5fa3a64a-7"></a>make install-webconf
+</pre>
+<p>Activamos la configuración de apache y reiniciamos los servicios</p>
+<pre class="code bash"><a name="rest_code_0f387ca4a416447b8b15fbeb8157258a-1"></a>a2enconf nagios.conf
+<a name="rest_code_0f387ca4a416447b8b15fbeb8157258a-2"></a>service apache2 restart
+<a name="rest_code_0f387ca4a416447b8b15fbeb8157258a-3"></a>service nagios restart
+</pre>
+<p>Y los plugins? Lo mismo. Descarga e instalación.</p>
+<pre class="code bash"><a name="rest_code_ed7a3496071a47c5a915a78ef153638e-1"></a><span class="nb">cd</span> /tmp
+<a name="rest_code_ed7a3496071a47c5a915a78ef153638e-2"></a>wget http://nagios-plugins.org/download/nagios-plugins-2.0.3.tar.gz
+<a name="rest_code_ed7a3496071a47c5a915a78ef153638e-3"></a>tar xvfz nagios-plugins-2.0.3.tar.gz
+<a name="rest_code_ed7a3496071a47c5a915a78ef153638e-4"></a>
+<a name="rest_code_ed7a3496071a47c5a915a78ef153638e-5"></a><span class="nb">cd</span> nagios-plugins-2.0.3
+<a name="rest_code_ed7a3496071a47c5a915a78ef153638e-6"></a>./configure --with-nagios-user<span class="o">=</span>nagios --with-nagios-group<span class="o">=</span>nagios
+<a name="rest_code_ed7a3496071a47c5a915a78ef153638e-7"></a>make
+<a name="rest_code_ed7a3496071a47c5a915a78ef153638e-8"></a>make install
+<a name="rest_code_ed7a3496071a47c5a915a78ef153638e-9"></a>
+<a name="rest_code_ed7a3496071a47c5a915a78ef153638e-10"></a>service nagios restart <span class="c1">#reiniciamos el servicio</span>
+</pre>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../categories/linux.html" rel="tag">linux</a></li>
+            <li><a class="tag p-category" href="../categories/monitoring.html" rel="tag">monitoring</a></li>
+            <li><a class="tag p-category" href="../categories/nagios.html" rel="tag">nagios</a></li>
+            <li><a class="tag p-category" href="../categories/network.html" rel="tag">network</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="next">
+                <a href="crontab-de-limpieza.html" rel="next" title="Crontab de limpieza">Siguiente publicación</a>
+            </li>
+        </ul></nav></aside><section class="comments"><h2>Comentarios</h2>
+                <script src="https://apis.google.com/js/plusone.js"></script><div class="g-comments" data-href="http://dvinazza.github.io/posts/instalando-nagios-core.html" data-first_party_property="BLOGGER" data-view_type="FILTERED_POSTMOD">
+</div>
+
+
+        </section></article>
+</div>
+        <!--End of body content-->
+
+        <footer id="footer">
+            Contents © 2017         <a href="mailto:davidvinazza@gmail.com">David Vinazza</a> - Powered by         <a href="http://getnikola.com" rel="nofollow">Nikola</a>         
+            
+        </footer>
+</div>
+</div>
+
+            <script src="../assets/js/jquery.min.js"></script><script src="../assets/js/bootstrap.min.js"></script><script src="../assets/js/moment-with-locales.min.js"></script><script src="../assets/js/fancydates.js"></script><script src="../assets/js/mathjax.js"></script><script src="../assets/js/jquery.colorbox-min.js"></script><script src="../assets/js/colorbox-i18n/jquery.colorbox-es.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
+    moment.locale("es");
+    fancydates(0, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates -->
+</body>
+</html>

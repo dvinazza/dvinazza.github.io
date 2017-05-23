@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html prefix="
+og: http://ogp.me/ns#
+article: http://ogp.me/ns/article#
+" lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Documentario de David Vinazza en Github">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DocumentarI/O (publicaciones antiguas, página 1) | DocumentarI/O</title>
+<link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="assets/css/rst.css" rel="stylesheet" type="text/css">
+<link href="assets/css/code.css" rel="stylesheet" type="text/css">
+<link href="assets/css/colorbox.css" rel="stylesheet" type="text/css">
+<link href="assets/css/theme.css" rel="stylesheet" type="text/css">
+<link href="assets/css/ipython.min.css" rel="stylesheet" type="text/css">
+<link href="assets/css/nikola_ipython.css" rel="stylesheet" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<link rel="canonical" href="http://dvinazza.github.io/index-1.html">
+<link rel="prev" href="index.html" type="text/html">
+<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]-->
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Ir al contenido principal</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-inverse navbar-static-top"><div class="container">
+<!-- This keeps the margins nice -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+            <span class="sr-only">Mostrar navegación</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://dvinazza.github.io/">
+
+                <span id="blog-title">DocumentarI/O</span>
+            </a>
+        </div>
+<!-- /.navbar-header -->
+        <div class="collapse navbar-collapse" id="bs-navbar" aria-expanded="false">
+            <ul class="nav navbar-nav">
+<li>
+<a href="archive.html">Archivo</a>
+                </li>
+<li>
+<a href="categories/index.html">Tags</a>
+                </li>
+<li>
+<a href="rss.xml">feed RSS</a>
+            </li>
+<li class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown">Otros Sitios<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+<li>
+<a href="https://github.com/dvinazza/">github</a>
+                    </li>
+<li>
+<a href="http://about.me/david.vinazza">about.me</a>
+                    </li>
+<li>
+<a href="http://ar.linkedin.com/in/davidvinazza/">linked.in</a>
+            </li>
+</ul>
+</li>
+</ul>
+<ul class="nav navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        <div class="row">
+            
+<div class="postindex">
+    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="posts/variables-personalizadas-en-nagios.html" class="u-url">Variables Personalizadas en Nagios</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn">David Vinazza</span></p>
+            <p class="dateline"><a href="posts/variables-personalizadas-en-nagios.html" rel="bookmark"><time class="published dt-published" datetime="2014-07-01T12:02:44-03:00" itemprop="datePublished" title="Fecha de publicación">2014-07-01 12:02</time></a></p>
+                <p class="commentline">        </p>
+<div class="g-commentcount" data-href="/posts/variables-personalizadas-en-nagios.html"></div>
+<script src="https://apis.google.com/js/plusone.js"></script>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>En caso de que sea necesario agregar una propiedad particular a un objeto de nagios, se pueden definir variables personalizadas anteponiendo un guión bajo al nombre de la propiedad.</p>
+<p>Algunos ejemplos:</p>
+<pre class="code text"><a name="rest_code_499cb042e59f48a2b1d2be7658200f9d-1"></a>define contact {
+<a name="rest_code_499cb042e59f48a2b1d2be7658200f9d-2"></a>    contact_name        Pepito Sysadmin
+<a name="rest_code_499cb042e59f48a2b1d2be7658200f9d-3"></a>    _twitter_username   nagioslover
+<a name="rest_code_499cb042e59f48a2b1d2be7658200f9d-4"></a>}
+<a name="rest_code_499cb042e59f48a2b1d2be7658200f9d-5"></a>
+<a name="rest_code_499cb042e59f48a2b1d2be7658200f9d-6"></a>define host {
+<a name="rest_code_499cb042e59f48a2b1d2be7658200f9d-7"></a>    host_name       SwitchImportante
+<a name="rest_code_499cb042e59f48a2b1d2be7658200f9d-8"></a>    _mac_address    00:06:5B:A6:AD:AA
+<a name="rest_code_499cb042e59f48a2b1d2be7658200f9d-9"></a>}
+</pre>
+<p>Es importante destacar que cuando se utilicen los macros para completar los valores personalizados en los comandos, es necesario anteponer el origen de la propiedad deseada.</p>
+<pre class="code text"><a name="rest_code_f7cfc8085c524cd39a4d1df831b698f6-1"></a>define command {
+<a name="rest_code_f7cfc8085c524cd39a4d1df831b698f6-2"></a>    command_name    check_ficticio
+<a name="rest_code_f7cfc8085c524cd39a4d1df831b698f6-3"></a>    command_line    /usr/local/nagios/libexec/check_ficticio.py $_HOSTMAC_ADDRESS$
+<a name="rest_code_f7cfc8085c524cd39a4d1df831b698f6-4"></a>}
+</pre>
+<p><a class="reference external" href="http://nagios.sourceforge.net/docs/3_0/customobjectvars.html">http://nagios.sourceforge.net/docs/3_0/customobjectvars.html</a></p>
+</div>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="posts/oracle-10-en-php.html" class="u-url">Oracle 10 en PHP</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn">David Vinazza</span></p>
+            <p class="dateline"><a href="posts/oracle-10-en-php.html" rel="bookmark"><time class="published dt-published" datetime="2014-06-30T18:54:03-03:00" itemprop="datePublished" title="Fecha de publicación">2014-06-30 18:54</time></a></p>
+                <p class="commentline">        </p>
+<div class="g-commentcount" data-href="/posts/oracle-10-en-php.html"></div>
+<script src="https://apis.google.com/js/plusone.js"></script>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>Tiempo atras necesité instalar una versión antigua del cliente de Oracle para un sitio en PHP.</p>
+<p>En debian, va a ser necesario tener instalado el programa 'alien', porque Oracle solo provee los RPM para instalar.</p>
+<p>Para no depender de Oracle, guardé una copia de los archivos en <a class="reference external" href="https://www.dropbox.com/sh/jyz3zhg0gny63u5/17TascJy9u/instantclient?lst">dropbox</a>.</p>
+<pre class="code bash"><a name="rest_code_adb8baa7aa34486b9b020a77e5cd70b3-1"></a>alien -i oracle-instantclient-basic-10.2.0.3-1.i386.rpm
+<a name="rest_code_adb8baa7aa34486b9b020a77e5cd70b3-2"></a>alien -i oracle-instantclient-devel-10.2.0.3-1.i386.rpm
+</pre>
+<p>También va a ser necesario activar la extensión OCI8, mediante el programa 'pecl', creo que es parte del packete 'php-pear'.</p>
+<pre class="code bash"><a name="rest_code_9d66ec9376d04a879fdb486582b40aed-1"></a>pecl install oci8
+</pre>
+<p>Hay que verificar que en la configuración de php.ini exista lo siguiente</p>
+<pre class="code text"><a name="rest_code_03c11c7d85344e01ad7266cab8d24703-1"></a>extension=oci8.so
+</pre>
+</div>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="posts/crontab-de-limpieza.html" class="u-url">Crontab de limpieza</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn">David Vinazza</span></p>
+            <p class="dateline"><a href="posts/crontab-de-limpieza.html" rel="bookmark"><time class="published dt-published" datetime="2014-06-30T11:51:14-03:00" itemprop="datePublished" title="Fecha de publicación">2014-06-30 11:51</time></a></p>
+                <p class="commentline">        </p>
+<div class="g-commentcount" data-href="/posts/crontab-de-limpieza.html"></div>
+<script src="https://apis.google.com/js/plusone.js"></script>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>Frecuentemente necesitamos limpiar carpetas que usamos de forma temporal, por ejemplo, una carpeta compartida que utilizamos para intercambiar archivos.
+Para realizar la limpieza, podemos utilizar el crontab y el comando find.</p>
+<p>Por ejemplo, podemos limpiar la carpeta los lunes por la madrugada.</p>
+<pre class="code bash"><a name="rest_code_bc68687b38d643f1bbb13f41f164e780-1"></a><span class="m">0</span> <span class="m">5</span> * * <span class="m">1</span> find <span class="o">[</span>carpeta<span class="o">]</span> -mindepth <span class="m">1</span> -mtime +<span class="o">[</span>dias de antigüedad<span class="o">]</span> -delete
+</pre>
+</div>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="posts/instalando-nagios-core.html" class="u-url">Instalando Nagios Core</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn">David Vinazza</span></p>
+            <p class="dateline"><a href="posts/instalando-nagios-core.html" rel="bookmark"><time class="published dt-published" datetime="2014-06-30T11:06:50-03:00" itemprop="datePublished" title="Fecha de publicación">2014-06-30 11:06</time></a></p>
+                <p class="commentline">        </p>
+<div class="g-commentcount" data-href="/posts/instalando-nagios-core.html"></div>
+<script src="https://apis.google.com/js/plusone.js"></script>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>Hace tiempo vengo postergando pasar del Nagios disponible en los repositorios de debian/ubuntu a la versión más reciente de Nagios. Por suerte, cuando por fin me decidí encontré mucha documentación al respecto. No inventé nada, lo único que hice fue recopilar información de varios sitios y darle un diseño más simpático, para que sirva de documentación.</p>
+<p>requerimientos: apache y php activado</p>
+<pre class="code bash"><a name="rest_code_82aef65bf861459e9a0cc912f827e57d-1"></a>apt-get install build-essential
+<a name="rest_code_82aef65bf861459e9a0cc912f827e57d-2"></a>
+<a name="rest_code_82aef65bf861459e9a0cc912f827e57d-3"></a><span class="nb">cd</span> /tmp
+<a name="rest_code_82aef65bf861459e9a0cc912f827e57d-4"></a>wget http://prdownloads.sourceforge.net/sourceforge/nagios/nagios-4.0.7.tar.gz
+<a name="rest_code_82aef65bf861459e9a0cc912f827e57d-5"></a>tar xvfz nagios-4.0.7.tar.gz
+<a name="rest_code_82aef65bf861459e9a0cc912f827e57d-6"></a><span class="nb">cd</span> nagios-4.0.7
+</pre>
+<p>Creamos los usuarios y grupones necesarios</p>
+<pre class="code bash"><a name="rest_code_a572cfbe8e694a138538a9e11a6c339b-1"></a>useradd nagios
+<a name="rest_code_a572cfbe8e694a138538a9e11a6c339b-2"></a>groupadd nagcmd
+<a name="rest_code_a572cfbe8e694a138538a9e11a6c339b-3"></a>/usr/sbin/usermod -a -G nagios nagios
+<a name="rest_code_a572cfbe8e694a138538a9e11a6c339b-4"></a>/usr/sbin/usermod -a -G nagcmd www-data
+<a name="rest_code_a572cfbe8e694a138538a9e11a6c339b-5"></a>/usr/sbin/usermod -a -G nagcmd nagios
+</pre>
+<p>Procedemos con la instalación</p>
+<pre class="code bash"><a name="rest_code_482d3dad3a764792b539865d5fa3a64a-1"></a>./configure --with-nagios-group<span class="o">=</span>nagios --with-command-group<span class="o">=</span>nagcmd --with-mail<span class="o">=</span>/usr/bin/sendmail --with-httpd_conf<span class="o">=</span>/etc/apache2/conf-available
+<a name="rest_code_482d3dad3a764792b539865d5fa3a64a-2"></a>make all
+<a name="rest_code_482d3dad3a764792b539865d5fa3a64a-3"></a>make install
+<a name="rest_code_482d3dad3a764792b539865d5fa3a64a-4"></a>make install-init
+<a name="rest_code_482d3dad3a764792b539865d5fa3a64a-5"></a>make install-config
+<a name="rest_code_482d3dad3a764792b539865d5fa3a64a-6"></a>make install-commandmode
+<a name="rest_code_482d3dad3a764792b539865d5fa3a64a-7"></a>make install-webconf
+</pre>
+<p>Activamos la configuración de apache y reiniciamos los servicios</p>
+<pre class="code bash"><a name="rest_code_0f387ca4a416447b8b15fbeb8157258a-1"></a>a2enconf nagios.conf
+<a name="rest_code_0f387ca4a416447b8b15fbeb8157258a-2"></a>service apache2 restart
+<a name="rest_code_0f387ca4a416447b8b15fbeb8157258a-3"></a>service nagios restart
+</pre>
+<p>Y los plugins? Lo mismo. Descarga e instalación.</p>
+<pre class="code bash"><a name="rest_code_ed7a3496071a47c5a915a78ef153638e-1"></a><span class="nb">cd</span> /tmp
+<a name="rest_code_ed7a3496071a47c5a915a78ef153638e-2"></a>wget http://nagios-plugins.org/download/nagios-plugins-2.0.3.tar.gz
+<a name="rest_code_ed7a3496071a47c5a915a78ef153638e-3"></a>tar xvfz nagios-plugins-2.0.3.tar.gz
+<a name="rest_code_ed7a3496071a47c5a915a78ef153638e-4"></a>
+<a name="rest_code_ed7a3496071a47c5a915a78ef153638e-5"></a><span class="nb">cd</span> nagios-plugins-2.0.3
+<a name="rest_code_ed7a3496071a47c5a915a78ef153638e-6"></a>./configure --with-nagios-user<span class="o">=</span>nagios --with-nagios-group<span class="o">=</span>nagios
+<a name="rest_code_ed7a3496071a47c5a915a78ef153638e-7"></a>make
+<a name="rest_code_ed7a3496071a47c5a915a78ef153638e-8"></a>make install
+<a name="rest_code_ed7a3496071a47c5a915a78ef153638e-9"></a>
+<a name="rest_code_ed7a3496071a47c5a915a78ef153638e-10"></a>service nagios restart <span class="c1">#reiniciamos el servicio</span>
+</pre>
+</div>
+    </div>
+    </article>
+</div>
+        <nav class="postindexpager"><ul class="pager">
+<li class="previous">
+                <a href="index.html" rel="prev">Publicaciones posteriores</a>
+            </li>
+        </ul></nav>
+</div>
+        <!--End of body content-->
+
+        <footer id="footer">
+            Contents © 2017         <a href="mailto:davidvinazza@gmail.com">David Vinazza</a> - Powered by         <a href="http://getnikola.com" rel="nofollow">Nikola</a>         
+            
+        </footer>
+</div>
+</div>
+
+            <script src="assets/js/jquery.min.js"></script><script src="assets/js/bootstrap.min.js"></script><script src="assets/js/moment-with-locales.min.js"></script><script src="assets/js/fancydates.js"></script><script src="assets/js/mathjax.js"></script><script src="assets/js/jquery.colorbox-min.js"></script><script src="assets/js/colorbox-i18n/jquery.colorbox-es.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
+    moment.locale("es");
+    fancydates(0, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates -->
+</body>
+</html>

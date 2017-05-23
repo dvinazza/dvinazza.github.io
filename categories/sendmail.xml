@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>DocumentarI/O (Publicaciones sobre sendmail)</title><link>http://dvinazza.github.io</link><description></description><atom:link href="http://dvinazza.github.io/categories/sendmail.xml" rel="self" type="application/rss+xml"></atom:link><language>es</language><lastBuildDate>Tue, 23 May 2017 02:31:54 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Alertas de BackupPC sin sendmail</title><link>http://dvinazza.github.io/posts/alertas-de-backuppc-sin-sendmail.html</link><dc:creator>David Vinazza</dc:creator><description>&lt;div&gt;&lt;p&gt;Reemplazar en la configuración del BackupPC el valro de la opción de 'SendmailPath' por '/usr/bin/msmtp'&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_c520492c7f4b4b7a869d90e5c8816c1b-1"&gt;&lt;/a&gt;apt-get install msmtp
+&lt;/pre&gt;&lt;p&gt;Crear un archivo de configuracion en el home de backuppc&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_483f2c8d72104fbab1ef9de98e96d1ff-1"&gt;&lt;/a&gt;su - backuppc
+&lt;a name="rest_code_483f2c8d72104fbab1ef9de98e96d1ff-2"&gt;&lt;/a&gt;touch .msmtprc
+&lt;a name="rest_code_483f2c8d72104fbab1ef9de98e96d1ff-3"&gt;&lt;/a&gt;chmod .msmtprc
+&lt;/pre&gt;&lt;p&gt;Cargar los siguientes datos dentro.&lt;/p&gt;
+&lt;pre class="code text"&gt;&lt;a name="rest_code_25a000f132ad4d239b7b98bf578b7851-1"&gt;&lt;/a&gt;account default
+&lt;a name="rest_code_25a000f132ad4d239b7b98bf578b7851-2"&gt;&lt;/a&gt;logfile ~/.msmtp.log
+&lt;a name="rest_code_25a000f132ad4d239b7b98bf578b7851-3"&gt;&lt;/a&gt;tls off
+&lt;a name="rest_code_25a000f132ad4d239b7b98bf578b7851-4"&gt;&lt;/a&gt;auth login
+&lt;a name="rest_code_25a000f132ad4d239b7b98bf578b7851-5"&gt;&lt;/a&gt;host [servidor de correo]
+&lt;a name="rest_code_25a000f132ad4d239b7b98bf578b7851-6"&gt;&lt;/a&gt;from [usuario]
+&lt;a name="rest_code_25a000f132ad4d239b7b98bf578b7851-7"&gt;&lt;/a&gt;user [usuario]
+&lt;a name="rest_code_25a000f132ad4d239b7b98bf578b7851-8"&gt;&lt;/a&gt;password [clave]
+&lt;/pre&gt;&lt;/div&gt;</description><category>backuppc</category><category>linux</category><category>monitoreo</category><category>msmtp</category><category>respaldos</category><category>sendmail</category><guid>http://dvinazza.github.io/posts/alertas-de-backuppc-sin-sendmail.html</guid><pubDate>Wed, 02 Jul 2014 00:37:49 GMT</pubDate></item></channel></rss>

@@ -1,0 +1,4 @@
+Sitemap: http://dvinazza.github.io/sitemapindex.xml
+
+User-Agent: *
+Host: dvinazza.github.io
