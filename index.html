@@ -8,13 +8,7 @@ article: http://ogp.me/ns/article#
 <meta name="description" content="Documentario de David Vinazza en Github">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>DocumentarI/O | DocumentarI/O</title>
-<link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-<link href="assets/css/rst.css" rel="stylesheet" type="text/css">
-<link href="assets/css/code.css" rel="stylesheet" type="text/css">
-<link href="assets/css/colorbox.css" rel="stylesheet" type="text/css">
-<link href="assets/css/theme.css" rel="stylesheet" type="text/css">
-<link href="assets/css/ipython.min.css" rel="stylesheet" type="text/css">
-<link href="assets/css/nikola_ipython.css" rel="stylesheet" type="text/css">
+<link href="assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
 <link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
 <link rel="canonical" href="http://dvinazza.github.io/index.html">
 <link rel="next" href="index-1.html" type="text/html">
@@ -77,7 +71,38 @@ article: http://ogp.me/ns/article#
         <div class="row">
             
 <div class="postindex">
-    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="posts/octoprint-en-openwrt-tp-link-1043nd.html" class="u-url">Octoprint en OpenWRT (tp-link 1043nd)</a></h1>
+    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="posts/network-manager-script.html" class="u-url">Synergy mediante un script de Network Manager</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn">David Vinazza</span></p>
+            <p class="dateline"><a href="posts/network-manager-script.html" rel="bookmark"><time class="published dt-published" datetime="2017-07-31T14:46:23-03:00" itemprop="datePublished" title="Fecha de publicación">2017-07-31 14:46</time></a></p>
+                <p class="commentline">        </p>
+<div class="g-commentcount" data-href="/posts/network-manager-script.html"></div>
+<script src="https://apis.google.com/js/plusone.js"></script>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>Hace tiempo estoy utilizando Synergy para manejar mi notebook mediante el teclado y el mouse de otra computadora, ya sea la desktop en casa o la pc del trabajo.</p>
+<p>Como en el trabajo las IPs son dinámicas, cada tanto tenía que averiguar que IP tenia la computadora y cambiar la configuración en la notebook para que se conecte. Terminé armando un script que determina cual es la red actual (trabajo/casa) y busca la IP del servidor mediante arp (con la mac address) y luego corre el cliente de Synergy automáticamente.</p>
+<p>Momentos épicos del código: obtener la ip a partir de una dirección mac.</p>
+<blockquote>
+<p>#escaneo la red para juntar mac address
+nmap -sP $NETWORK &amp;&gt;/dev/null #escaneo la red para juntar mac address</p>
+<p>#extraigo la ip de la tabla arp
+arp -a | grep $MAC_ADDR | grep -oP '(K[d|.]*'</p>
+</blockquote>
+<p>Una opción era agregarlo al crontab, pero se me ocurrió que podía correrse sólo cuando una interfaz de red "levanta".</p>
+<p>Según la documentación de Archlinux (aunque no sea mi distro):</p>
+<dl class="docutils">
+<dt>::</dt>
+<dd>
+<p class="first">There are quite a few network services that you will not want running until NetworkManager brings up an interface. Good examples are NTPd and network filesystem mounts of various types (e.g. netfs). NetworkManager has the ability to start these services when you connect to a network and stop them when you disconnect. To activate the feature you need to start the NetworkManager-dispatcher.service.</p>
+<p class="last">Once the feature is active, scripts can be added to the /etc/NetworkManager/dispatcher.d directory. These scripts must be owned by root, otherwise the dispatcher will not execute them. For added security, set group ownership to root as well.</p>
+</dd>
+</dl>
+<p>ver: <a class="reference external" href="https://github.com/dvinazza/auto-synergy">https://github.com/dvinazza/auto-synergy</a></p>
+</div>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="posts/octoprint-en-openwrt-tp-link-1043nd.html" class="u-url">Octoprint en OpenWRT (tp-link 1043nd)</a></h1>
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn">David Vinazza</span></p>
             <p class="dateline"><a href="posts/octoprint-en-openwrt-tp-link-1043nd.html" rel="bookmark"><time class="published dt-published" datetime="2017-05-22T23:05:27-03:00" itemprop="datePublished" title="Fecha de publicación">2017-05-22 23:05</time></a></p>
@@ -87,10 +112,75 @@ article: http://ogp.me/ns/article#
 </div>
     </header><div class="e-content entry-content">
     <div>
-<p>Escriba su publicación aquí.
-<a class="reference external" href="http://csmatt.com/notes/?p=154">http://csmatt.com/notes/?p=154</a></p>
-<pre class="code bash"><a name="rest_code_74d89d6c86a241ff97b515dd3d8c632c-1"></a>opkg install kmod-usb-serial-ch341  <span class="c1"># Driver para el Arduino</span>
+<p>Hace un par de años Leí la <a class="reference external" href="http://csmatt.com/notes/?p=154">nota de Matt Defenthaler</a> donde cuenta que se encontró un router tirado en la calle y lo resucitó en forma de servidor de impresiones 3d. Como la impresora 3d que armamos no tiene display (ni tarjeta usb), la venía usando conectada a un raspberry pi, corriendo repetier server.</p>
+<p>Si, lo sé, es un overkill, pero hasta hace poco no dispuse del tiempo y las ganas[1]_ para resolverlo.</p>
+<div class="section" id="openwrt-en-tp-link-1043nd-v2-0">
+<h2>OpenWRT en TP-Link 1043nd (v2.0)</h2>
+<p>La maravilla del router tp-link es que trae un puerto usb. El mismo se puede utilizar para albergar una carpeta compartida, o compartir una impresora (tradicional, de esas que escriben en papel) en la red local. Para conectarle una impresora 3d en cambio hace falta cambiar su sistema operativo.</p>
+<p>Si bien hay varios SO para reemplazar el que traen de fabrica los routers, el tutorial original que encontré utiliza OpenWRT así que fui por ahí. En teoría se podría usar tanto Tomato como DD-WRT mediante Optware.</p>
+<div class="section" id="flasheo">
+<h3>Flasheo</h3>
+<p>Bastante sencillo pero está fuera de alcance de este post. Hay cientos de tutoriales y por lo general son bastante claros aunque a veces pequen de simplistas y poco descriptivos. Personalmente no tuve problemas al seguir (la pobre) documentación que encontré en <a class="reference external" href="https://wiki.openwrt.org/toh/tp-link/tl-wr1043nd">la página dedicada al wr1043nd de openwrt</a>.
+<a class="reference external" href="https://wiki.openwrt.org/toh/tp-link/tl-wr1043nd">https://wiki.openwrt.org/toh/tp-link/tl-wr1043nd</a></p>
+</div>
+<div class="section" id="configuracion-pendrive-como-almacenamiento">
+<h3>Configuración pendrive como almacenamiento</h3>
+<p>Una vez que está instalado OpenWRT, lo siguiente es disponer de lugar para instalar nuestras porquerías (cerca de 250mb, que para la memoria de un router es muchísimo).</p>
+<p>Vamos a usar un pendrive cualunque, lo recomendable es formatearlo de antemano (no en el router) para hacer más rápido. De yapa podemos armar una partición de swap y rezar un poco para no precisarla jamás.</p>
+<p>overlayfs y swap</p>
+<p><a class="reference external" href="https://wiki.openwrt.org/doc/howto/extroot">https://wiki.openwrt.org/doc/howto/extroot</a></p>
+</div>
+<div class="section" id="configuracion-puerto-serie">
+<h3>Configuración puerto Serie</h3>
+<p>Lo siguiente es instalar el driver del puerto serie y el del arduino.</p>
+<pre class="code bash"><a name="rest_code_6f57673a30094aca8ab6d187fb9d1501-1"></a>opkg install kmod-usb-acm kmod-usb-serial-ch341  <span class="c1"># Driver para el Arduino</span>
 </pre>
+</div>
+<div class="section" id="ssl">
+<h3>SSL</h3>
+<p>Al instalar los paquetes de python vamos a conectarnos a sitios HTTPS así vamos a precisar instalar los certificados. Quizá exista alguna manera de evitar que pip compruebe las identidades, pero de nuevo, la intersección tiempo y ganas me resulta casi inexistente.</p>
+<p><a class="reference external" href="https://wiki.openwrt.org/doc/howto/wget-ssl-certs">https://wiki.openwrt.org/doc/howto/wget-ssl-certs</a></p>
+<pre class="code bash"><a name="rest_code_55c1c03ff29c48b78b21499f10ea14ee-1"></a>opkg install ca-certificates
+</pre>
+<p>Esto lo hice pero no estoy seguro de que sea necesario.</p>
+<pre class="code bash"><a name="rest_code_cdc6bbaad60c4a7db892ef34570b7ab2-1"></a>opkg update
+<a name="rest_code_cdc6bbaad60c4a7db892ef34570b7ab2-2"></a>opkg install wget
+<a name="rest_code_cdc6bbaad60c4a7db892ef34570b7ab2-3"></a>mkdir -p /etc/ssl/certs
+<a name="rest_code_cdc6bbaad60c4a7db892ef34570b7ab2-4"></a><span class="nb">echo</span> <span class="s2">"export SSL_CERT_DIR=/etc/ssl/certs"</span> &gt;&gt; /etc/profile
+<a name="rest_code_cdc6bbaad60c4a7db892ef34570b7ab2-5"></a><span class="nb">source</span> /etc/profile
+</pre>
+</div>
+</div>
+<div class="section" id="octoprint">
+<h2>Octoprint</h2>
+<p>Lamentablemente no pude instalar la versión más reciente. Aparentemente en algún momento requiere compilar código y en el OpenWRT no hay con que, ni me interesa configurar un ambiente para hacer cross-compiling. Quizá más adelante pueda ser un desafío, ahora mismo quiero terminar esto y dormir como cualquier ser humano.</p>
+<p>Así que agarré la versión que puso el tipo acá: <a class="reference external" href="https://docs.google.com/file/d/0B6-A_C5DmUPxZFhtMnlVaWdsOWc">https://docs.google.com/file/d/0B6-A_C5DmUPxZFhtMnlVaWdsOWc</a></p>
+<p>También la subi yo por si se cae: <a class="reference external" href="https://www.dropbox.com/s/vcwxxzgpwq3t9es/octoprint.zip?dl=0">https://www.dropbox.com/s/vcwxxzgpwq3t9es/octoprint.zip?dl=0</a></p>
+<div class="section" id="environment">
+<h3>Environment</h3>
+<p>Esto hay que comprobar que funcione realmente. En teoría entrás al environment e instalás todo, pero cuando lo desactivas sigue todo ahí. Super desprolijo... voy a tener pesadillas.</p>
+<pre class="code bash"><a name="rest_code_c7749bdcfd03444693a2dbb8fe66d358-1"></a>opkg install python python-setuptools
+</pre>
+<p>Mi router tiene aproximadamente 30mb para archivos temporales en /tmp, que es donde el pip descarga y extrae los paquetes de python. Como lo hace uno por uno, para la mayoría de los paquetes va a funcionar pero hubo uno o dos que daban problema así que directamente armé otro directorio temporal.</p>
+<pre class="code bash"><a name="rest_code_53f452ced2ee43fd99aac14093d56518-1"></a>mkdir ~/tmp
+<a name="rest_code_53f452ced2ee43fd99aac14093d56518-2"></a><span class="nv">TMPDIR</span><span class="o">=</span>~/tmp pip install -r octoprint_requirements.txt  <span class="c1"># Cambio el dir de los temporales</span>
+</pre>
+</div>
+</div>
+<div class="section" id="conclusiones">
+<h2>Conclusiones</h2>
+<p>Velocidad en general. Estabilidad. Ruido en la alimentación?</p>
+<table class="docutils footnote" frame="void" id="id1" rules="none">
+<colgroup>
+<col class="label">
+<col>
+</colgroup>
+<tbody valign="top"><tr>
+<td class="label">[1]</td>
+<td>Aunque la vida adulta parece ser justamente la extinción de la intersección entre ambas.</td>
+</tr></tbody>
+</table>
+</div>
 </div>
     </div>
     </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="posts/migrador-de-dbs-postgresql.html" class="u-url">Migrador de DBs (PostgreSQL)</a></h1>
@@ -294,36 +384,6 @@ article: http://ogp.me/ns/article#
 </pre>
 </div>
     </div>
-    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="posts/alertas-de-backuppc-sin-sendmail.html" class="u-url">Alertas de BackupPC sin sendmail</a></h1>
-        <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn">David Vinazza</span></p>
-            <p class="dateline"><a href="posts/alertas-de-backuppc-sin-sendmail.html" rel="bookmark"><time class="published dt-published" datetime="2014-07-01T21:37:49-03:00" itemprop="datePublished" title="Fecha de publicación">2014-07-01 21:37</time></a></p>
-                <p class="commentline">        </p>
-<div class="g-commentcount" data-href="/posts/alertas-de-backuppc-sin-sendmail.html"></div>
-<script src="https://apis.google.com/js/plusone.js"></script>
-</div>
-    </header><div class="e-content entry-content">
-    <div>
-<p>Reemplazar en la configuración del BackupPC el valro de la opción de 'SendmailPath' por '/usr/bin/msmtp'</p>
-<pre class="code bash"><a name="rest_code_c520492c7f4b4b7a869d90e5c8816c1b-1"></a>apt-get install msmtp
-</pre>
-<p>Crear un archivo de configuracion en el home de backuppc</p>
-<pre class="code bash"><a name="rest_code_483f2c8d72104fbab1ef9de98e96d1ff-1"></a>su - backuppc
-<a name="rest_code_483f2c8d72104fbab1ef9de98e96d1ff-2"></a>touch .msmtprc
-<a name="rest_code_483f2c8d72104fbab1ef9de98e96d1ff-3"></a>chmod .msmtprc
-</pre>
-<p>Cargar los siguientes datos dentro.</p>
-<pre class="code text"><a name="rest_code_25a000f132ad4d239b7b98bf578b7851-1"></a>account default
-<a name="rest_code_25a000f132ad4d239b7b98bf578b7851-2"></a>logfile ~/.msmtp.log
-<a name="rest_code_25a000f132ad4d239b7b98bf578b7851-3"></a>tls off
-<a name="rest_code_25a000f132ad4d239b7b98bf578b7851-4"></a>auth login
-<a name="rest_code_25a000f132ad4d239b7b98bf578b7851-5"></a>host [servidor de correo]
-<a name="rest_code_25a000f132ad4d239b7b98bf578b7851-6"></a>from [usuario]
-<a name="rest_code_25a000f132ad4d239b7b98bf578b7851-7"></a>user [usuario]
-<a name="rest_code_25a000f132ad4d239b7b98bf578b7851-8"></a>password [clave]
-</pre>
-</div>
-    </div>
     </article>
 </div>
         <nav class="postindexpager"><ul class="pager">
@@ -341,7 +401,7 @@ article: http://ogp.me/ns/article#
 </div>
 </div>
 
-            <script src="assets/js/jquery.min.js"></script><script src="assets/js/bootstrap.min.js"></script><script src="assets/js/moment-with-locales.min.js"></script><script src="assets/js/fancydates.js"></script><script src="assets/js/mathjax.js"></script><script src="assets/js/jquery.colorbox-min.js"></script><script src="assets/js/colorbox-i18n/jquery.colorbox-es.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
+            <script src="assets/js/all-nocdn.js"></script><script src="assets/js/colorbox-i18n/jquery.colorbox-es.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
     moment.locale("es");
     fancydates(0, "YYYY-MM-DD HH:mm");
     </script><!-- end fancy dates -->

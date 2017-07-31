@@ -1,8 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>DocumentarI/O</title><link>http://dvinazza.github.io</link><description>Documentario de David Vinazza en Github</description><atom:link href="http://dvinazza.github.io/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>es</language><lastBuildDate>Tue, 23 May 2017 02:31:54 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Octoprint en OpenWRT (tp-link 1043nd)</title><link>http://dvinazza.github.io/posts/octoprint-en-openwrt-tp-link-1043nd.html</link><dc:creator>David Vinazza</dc:creator><description>&lt;div&gt;&lt;p&gt;Escriba su publicación aquí.
-&lt;a class="reference external" href="http://csmatt.com/notes/?p=154"&gt;http://csmatt.com/notes/?p=154&lt;/a&gt;&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_74d89d6c86a241ff97b515dd3d8c632c-1"&gt;&lt;/a&gt;opkg install kmod-usb-serial-ch341  &lt;span class="c1"&gt;# Driver para el Arduino&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</description><guid>http://dvinazza.github.io/posts/octoprint-en-openwrt-tp-link-1043nd.html</guid><pubDate>Tue, 23 May 2017 02:05:27 GMT</pubDate></item><item><title>Migrador de DBs (PostgreSQL)</title><link>http://dvinazza.github.io/posts/migrador-de-dbs-postgresql.html</link><dc:creator>David Vinazza</dc:creator><description>&lt;div&gt;&lt;p&gt;Hace poco necesité migrar varias bases de postgresql pesadas de un servidor a otro, de una version a otra además, así que tuve que repetir el procedimiento varias veces y asegurarme de que la migración no traía problemas y que la base migrada quedaba actualizada. Naturalmente que fui armando un script para automatizar todo lo posible.&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>DocumentarI/O</title><link>http://dvinazza.github.io</link><description>Documentario de David Vinazza en Github</description><atom:link href="http://dvinazza.github.io/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>es</language><lastBuildDate>Mon, 31 Jul 2017 18:54:04 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Synergy mediante un script de Network Manager</title><link>http://dvinazza.github.io/posts/network-manager-script.html</link><dc:creator>David Vinazza</dc:creator><description>&lt;div&gt;&lt;p&gt;Hace tiempo estoy utilizando Synergy para manejar mi notebook mediante el teclado y el mouse de otra computadora, ya sea la desktop en casa o la pc del trabajo.&lt;/p&gt;
+&lt;p&gt;Como en el trabajo las IPs son dinámicas, cada tanto tenía que averiguar que IP tenia la computadora y cambiar la configuración en la notebook para que se conecte. Terminé armando un script que determina cual es la red actual (trabajo/casa) y busca la IP del servidor mediante arp (con la mac address) y luego corre el cliente de Synergy automáticamente.&lt;/p&gt;
+&lt;p&gt;Momentos épicos del código: obtener la ip a partir de una dirección mac.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;#escaneo la red para juntar mac address
+nmap -sP $NETWORK &amp;amp;&amp;gt;/dev/null #escaneo la red para juntar mac address&lt;/p&gt;
+&lt;p&gt;#extraigo la ip de la tabla arp
+arp -a | grep $MAC_ADDR | grep -oP '(K[d|.]*'&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Una opción era agregarlo al crontab, pero se me ocurrió que podía correrse sólo cuando una interfaz de red "levanta".&lt;/p&gt;
+&lt;p&gt;Según la documentación de Archlinux (aunque no sea mi distro):&lt;/p&gt;
+&lt;dl class="docutils"&gt;
+&lt;dt&gt;::&lt;/dt&gt;
+&lt;dd&gt;&lt;p class="first"&gt;There are quite a few network services that you will not want running until NetworkManager brings up an interface. Good examples are NTPd and network filesystem mounts of various types (e.g. netfs). NetworkManager has the ability to start these services when you connect to a network and stop them when you disconnect. To activate the feature you need to start the NetworkManager-dispatcher.service.&lt;/p&gt;
+&lt;p class="last"&gt;Once the feature is active, scripts can be added to the /etc/NetworkManager/dispatcher.d directory. These scripts must be owned by root, otherwise the dispatcher will not execute them. For added security, set group ownership to root as well.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;p&gt;ver: &lt;a class="reference external" href="https://github.com/dvinazza/auto-synergy"&gt;https://github.com/dvinazza/auto-synergy&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description><guid>http://dvinazza.github.io/posts/network-manager-script.html</guid><pubDate>Mon, 31 Jul 2017 17:46:23 GMT</pubDate></item><item><title>Octoprint en OpenWRT (tp-link 1043nd)</title><link>http://dvinazza.github.io/posts/octoprint-en-openwrt-tp-link-1043nd.html</link><dc:creator>David Vinazza</dc:creator><description>&lt;div&gt;&lt;p&gt;Hace un par de años Leí la &lt;a class="reference external" href="http://csmatt.com/notes/?p=154"&gt;nota de Matt Defenthaler&lt;/a&gt; donde cuenta que se encontró un router tirado en la calle y lo resucitó en forma de servidor de impresiones 3d. Como la impresora 3d que armamos no tiene display (ni tarjeta usb), la venía usando conectada a un raspberry pi, corriendo repetier server.&lt;/p&gt;
+&lt;p&gt;Si, lo sé, es un overkill, pero hasta hace poco no dispuse del tiempo y las ganas[1]_ para resolverlo.&lt;/p&gt;
+&lt;div class="section" id="openwrt-en-tp-link-1043nd-v2-0"&gt;
+&lt;h2&gt;OpenWRT en TP-Link 1043nd (v2.0)&lt;/h2&gt;
+&lt;p&gt;La maravilla del router tp-link es que trae un puerto usb. El mismo se puede utilizar para albergar una carpeta compartida, o compartir una impresora (tradicional, de esas que escriben en papel) en la red local. Para conectarle una impresora 3d en cambio hace falta cambiar su sistema operativo.&lt;/p&gt;
+&lt;p&gt;Si bien hay varios SO para reemplazar el que traen de fabrica los routers, el tutorial original que encontré utiliza OpenWRT así que fui por ahí. En teoría se podría usar tanto Tomato como DD-WRT mediante Optware.&lt;/p&gt;
+&lt;div class="section" id="flasheo"&gt;
+&lt;h3&gt;Flasheo&lt;/h3&gt;
+&lt;p&gt;Bastante sencillo pero está fuera de alcance de este post. Hay cientos de tutoriales y por lo general son bastante claros aunque a veces pequen de simplistas y poco descriptivos. Personalmente no tuve problemas al seguir (la pobre) documentación que encontré en &lt;a class="reference external" href="https://wiki.openwrt.org/toh/tp-link/tl-wr1043nd"&gt;la página dedicada al wr1043nd de openwrt&lt;/a&gt;.
+&lt;a class="reference external" href="https://wiki.openwrt.org/toh/tp-link/tl-wr1043nd"&gt;https://wiki.openwrt.org/toh/tp-link/tl-wr1043nd&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="configuracion-pendrive-como-almacenamiento"&gt;
+&lt;h3&gt;Configuración pendrive como almacenamiento&lt;/h3&gt;
+&lt;p&gt;Una vez que está instalado OpenWRT, lo siguiente es disponer de lugar para instalar nuestras porquerías (cerca de 250mb, que para la memoria de un router es muchísimo).&lt;/p&gt;
+&lt;p&gt;Vamos a usar un pendrive cualunque, lo recomendable es formatearlo de antemano (no en el router) para hacer más rápido. De yapa podemos armar una partición de swap y rezar un poco para no precisarla jamás.&lt;/p&gt;
+&lt;p&gt;overlayfs y swap&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://wiki.openwrt.org/doc/howto/extroot"&gt;https://wiki.openwrt.org/doc/howto/extroot&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="configuracion-puerto-serie"&gt;
+&lt;h3&gt;Configuración puerto Serie&lt;/h3&gt;
+&lt;p&gt;Lo siguiente es instalar el driver del puerto serie y el del arduino.&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_6f57673a30094aca8ab6d187fb9d1501-1"&gt;&lt;/a&gt;opkg install kmod-usb-acm kmod-usb-serial-ch341  &lt;span class="c1"&gt;# Driver para el Arduino&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="section" id="ssl"&gt;
+&lt;h3&gt;SSL&lt;/h3&gt;
+&lt;p&gt;Al instalar los paquetes de python vamos a conectarnos a sitios HTTPS así vamos a precisar instalar los certificados. Quizá exista alguna manera de evitar que pip compruebe las identidades, pero de nuevo, la intersección tiempo y ganas me resulta casi inexistente.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://wiki.openwrt.org/doc/howto/wget-ssl-certs"&gt;https://wiki.openwrt.org/doc/howto/wget-ssl-certs&lt;/a&gt;&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_55c1c03ff29c48b78b21499f10ea14ee-1"&gt;&lt;/a&gt;opkg install ca-certificates
+&lt;/pre&gt;&lt;p&gt;Esto lo hice pero no estoy seguro de que sea necesario.&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_cdc6bbaad60c4a7db892ef34570b7ab2-1"&gt;&lt;/a&gt;opkg update
+&lt;a name="rest_code_cdc6bbaad60c4a7db892ef34570b7ab2-2"&gt;&lt;/a&gt;opkg install wget
+&lt;a name="rest_code_cdc6bbaad60c4a7db892ef34570b7ab2-3"&gt;&lt;/a&gt;mkdir -p /etc/ssl/certs
+&lt;a name="rest_code_cdc6bbaad60c4a7db892ef34570b7ab2-4"&gt;&lt;/a&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;"export SSL_CERT_DIR=/etc/ssl/certs"&lt;/span&gt; &amp;gt;&amp;gt; /etc/profile
+&lt;a name="rest_code_cdc6bbaad60c4a7db892ef34570b7ab2-5"&gt;&lt;/a&gt;&lt;span class="nb"&gt;source&lt;/span&gt; /etc/profile
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="octoprint"&gt;
+&lt;h2&gt;Octoprint&lt;/h2&gt;
+&lt;p&gt;Lamentablemente no pude instalar la versión más reciente. Aparentemente en algún momento requiere compilar código y en el OpenWRT no hay con que, ni me interesa configurar un ambiente para hacer cross-compiling. Quizá más adelante pueda ser un desafío, ahora mismo quiero terminar esto y dormir como cualquier ser humano.&lt;/p&gt;
+&lt;p&gt;Así que agarré la versión que puso el tipo acá: &lt;a class="reference external" href="https://docs.google.com/file/d/0B6-A_C5DmUPxZFhtMnlVaWdsOWc"&gt;https://docs.google.com/file/d/0B6-A_C5DmUPxZFhtMnlVaWdsOWc&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;También la subi yo por si se cae: &lt;a class="reference external" href="https://www.dropbox.com/s/vcwxxzgpwq3t9es/octoprint.zip?dl=0"&gt;https://www.dropbox.com/s/vcwxxzgpwq3t9es/octoprint.zip?dl=0&lt;/a&gt;&lt;/p&gt;
+&lt;div class="section" id="environment"&gt;
+&lt;h3&gt;Environment&lt;/h3&gt;
+&lt;p&gt;Esto hay que comprobar que funcione realmente. En teoría entrás al environment e instalás todo, pero cuando lo desactivas sigue todo ahí. Super desprolijo... voy a tener pesadillas.&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_c7749bdcfd03444693a2dbb8fe66d358-1"&gt;&lt;/a&gt;opkg install python python-setuptools
+&lt;/pre&gt;&lt;p&gt;Mi router tiene aproximadamente 30mb para archivos temporales en /tmp, que es donde el pip descarga y extrae los paquetes de python. Como lo hace uno por uno, para la mayoría de los paquetes va a funcionar pero hubo uno o dos que daban problema así que directamente armé otro directorio temporal.&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_53f452ced2ee43fd99aac14093d56518-1"&gt;&lt;/a&gt;mkdir ~/tmp
+&lt;a name="rest_code_53f452ced2ee43fd99aac14093d56518-2"&gt;&lt;/a&gt;&lt;span class="nv"&gt;TMPDIR&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;~/tmp pip install -r octoprint_requirements.txt  &lt;span class="c1"&gt;# Cambio el dir de los temporales&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="conclusiones"&gt;
+&lt;h2&gt;Conclusiones&lt;/h2&gt;
+&lt;p&gt;Velocidad en general. Estabilidad. Ruido en la alimentación?&lt;/p&gt;
+&lt;table class="docutils footnote" frame="void" id="id1" rules="none"&gt;
+&lt;colgroup&gt;&lt;col class="label"&gt;&lt;col&gt;&lt;/colgroup&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td class="label"&gt;[1]&lt;/td&gt;&lt;td&gt;Aunque la vida adulta parece ser justamente la extinción de la intersección entre ambas.&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;&lt;/div&gt;</description><guid>http://dvinazza.github.io/posts/octoprint-en-openwrt-tp-link-1043nd.html</guid><pubDate>Tue, 23 May 2017 02:05:27 GMT</pubDate></item><item><title>Migrador de DBs (PostgreSQL)</title><link>http://dvinazza.github.io/posts/migrador-de-dbs-postgresql.html</link><dc:creator>David Vinazza</dc:creator><description>&lt;div&gt;&lt;p&gt;Hace poco necesité migrar varias bases de postgresql pesadas de un servidor a otro, de una version a otra además, así que tuve que repetir el procedimiento varias veces y asegurarme de que la migración no traía problemas y que la base migrada quedaba actualizada. Naturalmente que fui armando un script para automatizar todo lo posible.&lt;/p&gt;
 &lt;p&gt;Básicamente lo que hice fue intercambiar las llaves de SSH para que el postgresql del origen pudiese conectarse en el destino. A partir de ahi, probé varias configuraciones para encontrar la más efectiva considerando el uso de recursos como cpu y red.&lt;/p&gt;
 &lt;p&gt;En caso de que a alguien le sirva, lo dejo en &lt;a class="reference external" href="http://pastebin.com/g75HRppc"&gt;pastebin&lt;/a&gt;. Saludos!&lt;/p&gt;&lt;/div&gt;</description><guid>http://dvinazza.github.io/posts/migrador-de-dbs-postgresql.html</guid><pubDate>Fri, 31 Jul 2015 17:40:26 GMT</pubDate></item><item><title>Bitlocker en Debian</title><link>http://dvinazza.github.io/posts/bitlocker-en-debian.html</link><dc:creator>David Vinazza</dc:creator><description>&lt;div&gt;&lt;p&gt;Instalación de requisitos&lt;/p&gt;
 &lt;pre class="code bash"&gt;&lt;a name="rest_code_9b2eb698dfee40dda92d5f02d5102870-1"&gt;&lt;/a&gt;apt-get install libfuse-dev libpolarssl-dev
@@ -94,19 +167,4 @@
 &lt;a name="rest_code_332584d4724a4c7385e187eeb84cab44-11"&gt;&lt;/a&gt;&lt;span class="m"&gt;10&lt;/span&gt;: &lt;span class="m"&gt;04&lt;/span&gt; &lt;span class="m"&gt;00&lt;/span&gt; &lt;span class="m"&gt;40&lt;/span&gt; d2 &lt;span class="m"&gt;00&lt;/span&gt; &lt;span class="m"&gt;00&lt;/span&gt; &lt;span class="m"&gt;00&lt;/span&gt; &lt;span class="m"&gt;00&lt;/span&gt; &lt;span class="m"&gt;00&lt;/span&gt; &lt;span class="m"&gt;00&lt;/span&gt; &lt;span class="m"&gt;00&lt;/span&gt; &lt;span class="m"&gt;00&lt;/span&gt; &lt;span class="m"&gt;00&lt;/span&gt; &lt;span class="m"&gt;00&lt;/span&gt; &lt;span class="m"&gt;00&lt;/span&gt; &lt;span class="m"&gt;00&lt;/span&gt;
 &lt;a name="rest_code_332584d4724a4c7385e187eeb84cab44-12"&gt;&lt;/a&gt;&lt;span class="m"&gt;20&lt;/span&gt;: &lt;span class="m"&gt;00&lt;/span&gt; &lt;span class="m"&gt;00&lt;/span&gt; &lt;span class="m"&gt;00&lt;/span&gt; &lt;span class="m"&gt;00&lt;/span&gt; &lt;span class="m"&gt;00&lt;/span&gt; &lt;span class="m"&gt;00&lt;/span&gt; &lt;span class="m"&gt;00&lt;/span&gt; &lt;span class="m"&gt;00&lt;/span&gt; &lt;span class="m"&gt;00&lt;/span&gt; &lt;span class="m"&gt;00&lt;/span&gt; &lt;span class="m"&gt;00&lt;/span&gt; &lt;span class="m"&gt;00&lt;/span&gt; 3c &lt;span class="m"&gt;10&lt;/span&gt; &lt;span class="m"&gt;49&lt;/span&gt; &lt;span class="m"&gt;36&lt;/span&gt;
 &lt;a name="rest_code_332584d4724a4c7385e187eeb84cab44-13"&gt;&lt;/a&gt;&lt;span class="m"&gt;30&lt;/span&gt;: &lt;span class="m"&gt;00&lt;/span&gt; &lt;span class="m"&gt;00&lt;/span&gt; &lt;span class="m"&gt;00&lt;/span&gt; &lt;span class="m"&gt;00&lt;/span&gt; d0 &lt;span class="m"&gt;00&lt;/span&gt; &lt;span class="m"&gt;00&lt;/span&gt; &lt;span class="m"&gt;00&lt;/span&gt; &lt;span class="m"&gt;00&lt;/span&gt; &lt;span class="m"&gt;00&lt;/span&gt; &lt;span class="m"&gt;00&lt;/span&gt; &lt;span class="m"&gt;00&lt;/span&gt; &lt;span class="m"&gt;00&lt;/span&gt; &lt;span class="m"&gt;00&lt;/span&gt; &lt;span class="m"&gt;00&lt;/span&gt; &lt;span class="m"&gt;00&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</description><category>linux nomodeset backlight grub video</category><guid>http://dvinazza.github.io/posts/problemas-de-brillo-y-resolucion-en-linux.html</guid><pubDate>Wed, 16 Jul 2014 18:28:50 GMT</pubDate></item><item><title>Alertas de BackupPC sin sendmail</title><link>http://dvinazza.github.io/posts/alertas-de-backuppc-sin-sendmail.html</link><dc:creator>David Vinazza</dc:creator><description>&lt;div&gt;&lt;p&gt;Reemplazar en la configuración del BackupPC el valro de la opción de 'SendmailPath' por '/usr/bin/msmtp'&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_c520492c7f4b4b7a869d90e5c8816c1b-1"&gt;&lt;/a&gt;apt-get install msmtp
-&lt;/pre&gt;&lt;p&gt;Crear un archivo de configuracion en el home de backuppc&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_483f2c8d72104fbab1ef9de98e96d1ff-1"&gt;&lt;/a&gt;su - backuppc
-&lt;a name="rest_code_483f2c8d72104fbab1ef9de98e96d1ff-2"&gt;&lt;/a&gt;touch .msmtprc
-&lt;a name="rest_code_483f2c8d72104fbab1ef9de98e96d1ff-3"&gt;&lt;/a&gt;chmod .msmtprc
-&lt;/pre&gt;&lt;p&gt;Cargar los siguientes datos dentro.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_25a000f132ad4d239b7b98bf578b7851-1"&gt;&lt;/a&gt;account default
-&lt;a name="rest_code_25a000f132ad4d239b7b98bf578b7851-2"&gt;&lt;/a&gt;logfile ~/.msmtp.log
-&lt;a name="rest_code_25a000f132ad4d239b7b98bf578b7851-3"&gt;&lt;/a&gt;tls off
-&lt;a name="rest_code_25a000f132ad4d239b7b98bf578b7851-4"&gt;&lt;/a&gt;auth login
-&lt;a name="rest_code_25a000f132ad4d239b7b98bf578b7851-5"&gt;&lt;/a&gt;host [servidor de correo]
-&lt;a name="rest_code_25a000f132ad4d239b7b98bf578b7851-6"&gt;&lt;/a&gt;from [usuario]
-&lt;a name="rest_code_25a000f132ad4d239b7b98bf578b7851-7"&gt;&lt;/a&gt;user [usuario]
-&lt;a name="rest_code_25a000f132ad4d239b7b98bf578b7851-8"&gt;&lt;/a&gt;password [clave]
-&lt;/pre&gt;&lt;/div&gt;</description><category>backuppc</category><category>linux</category><category>monitoreo</category><category>msmtp</category><category>respaldos</category><category>sendmail</category><guid>http://dvinazza.github.io/posts/alertas-de-backuppc-sin-sendmail.html</guid><pubDate>Wed, 02 Jul 2014 00:37:49 GMT</pubDate></item></channel></rss>
+&lt;/pre&gt;&lt;/div&gt;</description><category>linux nomodeset backlight grub video</category><guid>http://dvinazza.github.io/posts/problemas-de-brillo-y-resolucion-en-linux.html</guid><pubDate>Wed, 16 Jul 2014 18:28:50 GMT</pubDate></item></channel></rss>

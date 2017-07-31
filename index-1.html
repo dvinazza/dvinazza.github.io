@@ -8,13 +8,7 @@ article: http://ogp.me/ns/article#
 <meta name="description" content="Documentario de David Vinazza en Github">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>DocumentarI/O (publicaciones antiguas, página 1) | DocumentarI/O</title>
-<link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-<link href="assets/css/rst.css" rel="stylesheet" type="text/css">
-<link href="assets/css/code.css" rel="stylesheet" type="text/css">
-<link href="assets/css/colorbox.css" rel="stylesheet" type="text/css">
-<link href="assets/css/theme.css" rel="stylesheet" type="text/css">
-<link href="assets/css/ipython.min.css" rel="stylesheet" type="text/css">
-<link href="assets/css/nikola_ipython.css" rel="stylesheet" type="text/css">
+<link href="assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
 <link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
 <link rel="canonical" href="http://dvinazza.github.io/index-1.html">
 <link rel="prev" href="index.html" type="text/html">
@@ -77,7 +71,37 @@ article: http://ogp.me/ns/article#
         <div class="row">
             
 <div class="postindex">
-    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="posts/variables-personalizadas-en-nagios.html" class="u-url">Variables Personalizadas en Nagios</a></h1>
+    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="posts/alertas-de-backuppc-sin-sendmail.html" class="u-url">Alertas de BackupPC sin sendmail</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn">David Vinazza</span></p>
+            <p class="dateline"><a href="posts/alertas-de-backuppc-sin-sendmail.html" rel="bookmark"><time class="published dt-published" datetime="2014-07-01T21:37:49-03:00" itemprop="datePublished" title="Fecha de publicación">2014-07-01 21:37</time></a></p>
+                <p class="commentline">        </p>
+<div class="g-commentcount" data-href="/posts/alertas-de-backuppc-sin-sendmail.html"></div>
+<script src="https://apis.google.com/js/plusone.js"></script>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>Reemplazar en la configuración del BackupPC el valro de la opción de 'SendmailPath' por '/usr/bin/msmtp'</p>
+<pre class="code bash"><a name="rest_code_c520492c7f4b4b7a869d90e5c8816c1b-1"></a>apt-get install msmtp
+</pre>
+<p>Crear un archivo de configuracion en el home de backuppc</p>
+<pre class="code bash"><a name="rest_code_483f2c8d72104fbab1ef9de98e96d1ff-1"></a>su - backuppc
+<a name="rest_code_483f2c8d72104fbab1ef9de98e96d1ff-2"></a>touch .msmtprc
+<a name="rest_code_483f2c8d72104fbab1ef9de98e96d1ff-3"></a>chmod .msmtprc
+</pre>
+<p>Cargar los siguientes datos dentro.</p>
+<pre class="code text"><a name="rest_code_25a000f132ad4d239b7b98bf578b7851-1"></a>account default
+<a name="rest_code_25a000f132ad4d239b7b98bf578b7851-2"></a>logfile ~/.msmtp.log
+<a name="rest_code_25a000f132ad4d239b7b98bf578b7851-3"></a>tls off
+<a name="rest_code_25a000f132ad4d239b7b98bf578b7851-4"></a>auth login
+<a name="rest_code_25a000f132ad4d239b7b98bf578b7851-5"></a>host [servidor de correo]
+<a name="rest_code_25a000f132ad4d239b7b98bf578b7851-6"></a>from [usuario]
+<a name="rest_code_25a000f132ad4d239b7b98bf578b7851-7"></a>user [usuario]
+<a name="rest_code_25a000f132ad4d239b7b98bf578b7851-8"></a>password [clave]
+</pre>
+</div>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="posts/variables-personalizadas-en-nagios.html" class="u-url">Variables Personalizadas en Nagios</a></h1>
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn">David Vinazza</span></p>
             <p class="dateline"><a href="posts/variables-personalizadas-en-nagios.html" rel="bookmark"><time class="published dt-published" datetime="2014-07-01T12:02:44-03:00" itemprop="datePublished" title="Fecha de publicación">2014-07-01 12:02</time></a></p>
@@ -220,7 +244,7 @@ Para realizar la limpieza, podemos utilizar el crontab y el comando find.</p>
 </div>
 </div>
 
-            <script src="assets/js/jquery.min.js"></script><script src="assets/js/bootstrap.min.js"></script><script src="assets/js/moment-with-locales.min.js"></script><script src="assets/js/fancydates.js"></script><script src="assets/js/mathjax.js"></script><script src="assets/js/jquery.colorbox-min.js"></script><script src="assets/js/colorbox-i18n/jquery.colorbox-es.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
+            <script src="assets/js/all-nocdn.js"></script><script src="assets/js/colorbox-i18n/jquery.colorbox-es.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
     moment.locale("es");
     fancydates(0, "YYYY-MM-DD HH:mm");
     </script><!-- end fancy dates -->

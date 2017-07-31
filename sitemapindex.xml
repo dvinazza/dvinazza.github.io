@@ -14,6 +14,10 @@
   <lastmod>2017-05-23T02:31:00Z</lastmod>
  </sitemap>
  <sitemap>
+  <loc>http://dvinazza.github.io/categories/cat_scripts.xml</loc>
+  <lastmod>2017-07-31T18:54:00Z</lastmod>
+ </sitemap>
+ <sitemap>
   <loc>http://dvinazza.github.io/categories/cleanup.xml</loc>
   <lastmod>2017-05-23T02:31:00Z</lastmod>
  </sitemap>
@@ -87,10 +91,10 @@
  </sitemap>
  <sitemap>
   <loc>http://dvinazza.github.io/rss.xml</loc>
-  <lastmod>2017-05-23T02:31:00Z</lastmod>
+  <lastmod>2017-07-31T18:54:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://dvinazza.github.io/sitemap.xml</loc>
-  <lastmod>2017-05-23T02:31:00Z</lastmod>
+  <lastmod>2017-07-31T18:54:00Z</lastmod>
  </sitemap>
 </sitemapindex>
